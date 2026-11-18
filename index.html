@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visit Kaptai - Smart Tourism Portal</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Chat circle glow: repeats every 1 second */
+    @keyframes glow {
+      0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.85), 0 8px 24px rgba(5, 150, 105, 0.45); }
+      70%  { box-shadow: 0 0 0 26px rgba(16, 185, 129, 0), 0 8px 24px rgba(5, 150, 105, 0.45); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 8px 24px rgba(5, 150, 105, 0.45); }
+    }
+    .chat-glow { animation: glow 1s infinite; }
+  </style>
+</head>
+
+<body class="bg-white text-slate-800">
+
+  <!-- ================= NAVBAR ================= -->
+  <!-- Fixed Black Glass Navigation Bar -->
+  <nav class="fixed top-0 left-0 w-full z-40 bg-gradient-to-b from-black/90 to-black/40 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+
+      <!-- Left: Logo with name below -->
+      <a href="#home" class="flex flex-col items-center gap-1">
+        <span class="w-9 h-9 rounded-lg bg-emerald-600/30 border border-emerald-400/60 flex items-center justify-center text-emerald-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999A5.002 5.002 0 007.1 11 4 4 0 003 15z"/>
+          </svg>
+        </span>
+        <span class="text-[10px] font-bold tracking-widest text-white leading-none">VISIT KAPTAI</span>
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <div class="hidden md:flex items-center gap-10 text-sm font-semibold text-white">
+        <a href="#home" class="hover:text-emerald-400 transition">Home</a>
+        <a href="#places" class="hover:text-emerald-400 transition">Places</a>
+        <a href="#rules" class="hover:text-emerald-400 transition">Rules</a>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center gap-2">
+        <a href="tel:999" class="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
+          </svg>
+          Emergency Call
+        </a>
+        <a href="#book" class="px-3 sm:px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold transition">
+          Book a Guide
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <!-- Hero banner with clean emerald/slate placeholder backdrop until video/kaptai.mp4 and image/hero.jpg are added -->
+  <section id="home" class="relative min-h-[600px] h-[88vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900">
+
+    <!-- Video/Image placeholder comments:
+         Add your video to 'video/kaptai.mp4' and poster to 'image/hero.jpg' later.
+         <video class="absolute inset-0 w-full h-full object-cover" poster="image/hero.jpg" autoplay muted loop playsinline>
+           <source src="video/kaptai.mp4" type="video/mp4" />
+         </video>
+    -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/65"></div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl pt-16">
+
+      <!-- Static Live Weather Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-white/15 text-xs font-medium backdrop-blur">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="weatherText">Kaptai Live: 27°C • Wind 5.3 km/h</span>
+      </div>
+
+      <!-- Hero Heading -->
+      <h1 class="mt-6 text-4xl sm:text-6xl font-extrabold leading-tight">
+        Discover the Emerald Heart of <span class="text-emerald-400">Kaptai</span>
+      </h1>
+      <p class="mt-5 text-base sm:text-lg text-slate-100 max-w-2xl mx-auto">
+        Your smart travel companion before you arrive. Explore hidden lake spots, direct routes from Chattogram, live weather, and book a local guide with AI voice assistance.
+      </p>
+
+      <!-- Hero Buttons -->
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#places" class="px-7 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-semibold transition">Explore Places</a>
+        <button id="budgetBtn" class="px-7 py-3 rounded-lg bg-white/10 hover:bg-white/20 border border-white/25 font-semibold backdrop-blur transition">Let's Estimate the Budget</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLACES SECTION ================= -->
+  <section id="places" class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+
+    <!-- Section Header & Search Box -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
+      <div>
+        <p class="text-xs font-bold tracking-widest text-emerald-700">TOP DESTINATIONS</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mt-1 text-slate-900">Places to Visit in Kaptai</h2>
+        <p class="mt-2 text-slate-600">Search any spot, check Google Maps, watch video previews, or read Chattogram travel routes.</p>
+      </div>
+
+      <!-- Search box with search icon -->
+      <div class="relative w-full md:w-80">
+        <svg class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7"/>
+          <path stroke-linecap="round" d="M21 21l-4.3-4.3"/>
+        </svg>
+        <input id="searchInput" type="text" placeholder="Search place (e.g. Kayak, Lake, Temple)"
+          class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+      </div>
+    </div>
+
+    <!-- 6 Main Kaptai Place Cards (Directly written in HTML with zero broken image icons) -->
+    <div id="placesGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Card 1: Kaptai Lake & Kayak Club -->
+      <div class="place-card bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex flex-col">
+        <!-- Image placeholder box (Structure comment: image/places/kaptai-lake.jpg) -->
+        <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-700 to-emerald-900 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
+          <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span class="text-xs font-semibold tracking-wide uppercase">Kaptai Lake &amp; Kayak Club</span>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-slate-900">Kaptai Lake &amp; Kayak Club</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Crystal emerald lake water surrounded by lush hills, famous for peaceful kayaking and sunrise boat rides.
+            <span class="seeMore cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
+          </p>
+          <div class="mt-auto pt-4">
+            <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+              <button class="routeBtn px-3 py-1.5 rounded-md bg-slate-900 text-white text-xs font-semibold">Route from Chittagong</button>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">Google Map</a>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold">Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Lake Paradise (Navy Camp) -->
+      <div class="place-card bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex flex-col">
+        <!-- Image placeholder box (Structure comment: image/places/lake-paradise.jpg) -->
+        <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-800 to-slate-900 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
+          <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span class="text-xs font-semibold tracking-wide uppercase">Lake Paradise (Navy Camp)</span>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-slate-900">Lake Paradise (Navy Camp)</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Scenic lakeside picnic spot managed by Bangladesh Navy with panoramic viewpoints and boat pier.
+            <span class="seeMore cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
+          </p>
+          <div class="mt-auto pt-4">
+            <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+              <button class="routeBtn px-3 py-1.5 rounded-md bg-slate-900 text-white text-xs font-semibold">Route from Chittagong</button>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">Google Map</a>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold">Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Chitmaram Buddhist Temple -->
+      <div class="place-card bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex flex-col">
+        <!-- Image placeholder box (Structure comment: image/places/chitmaram-temple.jpg) -->
+        <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-900 to-teal-950 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
+          <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span class="text-xs font-semibold tracking-wide uppercase">Chitmaram Buddhist Temple</span>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-slate-900">Chitmaram Buddhist Temple</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Historic hilltop golden temple overlooking the Karnaphuli River with serene Marma heritage.
+            <span class="seeMore cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
+          </p>
+          <div class="mt-auto pt-4">
+            <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+              <button class="routeBtn px-3 py-1.5 rounded-md bg-slate-900 text-white text-xs font-semibold">Route from Chittagong</button>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">Google Map</a>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold">Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Shilchori & Hanging Bridge View -->
+      <div class="place-card bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex flex-col">
+        <!-- Image placeholder box (Structure comment: image/places/shilchori.jpg) -->
+        <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-slate-800 to-emerald-950 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
+          <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span class="text-xs font-semibold tracking-wide uppercase">Shilchori &amp; Hanging Bridge</span>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-slate-900">Shilchori &amp; Hanging Bridge View</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Misty hill trails, riverside suspension views, and quiet eco-resorts away from city crowds.
+            <span class="seeMore cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
+          </p>
+          <div class="mt-auto pt-4">
+            <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+              <button class="routeBtn px-3 py-1.5 rounded-md bg-slate-900 text-white text-xs font-semibold">Route from Chittagong</button>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">Google Map</a>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold">Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Kaptai National Park -->
+      <div class="place-card bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex flex-col">
+        <!-- Image placeholder box (Structure comment: image/places/national-park.jpg) -->
+        <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-700 to-slate-900 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
+          <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span class="text-xs font-semibold tracking-wide uppercase">Kaptai National Park</span>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-slate-900">Kaptai National Park</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Dense tropical forest reserve home to teak trees, nature trails, and wild birds along Kaptai road.
+            <span class="seeMore cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
+          </p>
+          <div class="mt-auto pt-4">
+            <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+              <button class="routeBtn px-3 py-1.5 rounded-md bg-slate-900 text-white text-xs font-semibold">Route from Chittagong</button>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">Google Map</a>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold">Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Zoom Restaurant & Lake View -->
+      <div class="place-card bg-white rounded-2xl border border-slate-200 shadow-sm p-2 flex flex-col">
+        <!-- Image placeholder box (Structure comment: image/places/zoom-restaurant.jpg) -->
+        <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-teal-800 to-emerald-950 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
+          <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span class="text-xs font-semibold tracking-wide uppercase">Zoom Restaurant &amp; Lake View</span>
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <h3 class="font-bold text-lg text-slate-900">Zoom Restaurant &amp; Lake View</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Iconic hilltop lakeside dining spot famous for sunset views over Kaptai Lake.
+            <span class="seeMore cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
+          </p>
+          <div class="mt-auto pt-4">
+            <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+              <button class="routeBtn px-3 py-1.5 rounded-md bg-slate-900 text-white text-xs font-semibold">Route from Chittagong</button>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">Google Map</a>
+              <a href="#" class="px-3 py-1.5 rounded-md bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold">Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hidden search empty-state alert -->
+    <p id="noResult" class="hidden text-center text-slate-500 py-10">No place found. Try another word.</p>
+
+    <!-- See More Places CTA Button -->
+    <div class="text-center mt-10">
+      <button id="morePlacesBtn" class="px-8 py-3 rounded-lg bg-slate-900 hover:bg-slate-700 text-white font-semibold transition">
+        See More Places
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= RULES SECTION ================= -->
+  <section id="rules" class="bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+      <p class="text-xs font-bold tracking-widest text-emerald-700 text-center">GUIDELINES</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-center mt-1 mb-10 text-slate-900">Kaptai Travel Rules</h2>
+
+      <div class="max-w-3xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 font-extrabold flex items-center justify-center">!</span>
+          <h3 class="text-lg font-bold text-slate-900">Important Visitor Rules</h3>
+        </div>
+        <ol class="space-y-4 text-sm text-slate-700">
+          <li class="flex gap-3">
+            <span class="font-bold text-emerald-600">1.</span>
+            <span>Always wear a life jacket when boating or kayaking on Kaptai Lake.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-emerald-600">2.</span>
+            <span>Photography is strictly prohibited near Kaptai Hydroelectric Dam &amp; restricted defense zones.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-emerald-600">3.</span>
+            <span>Return from deep lake islands before 5:00 PM as evening fog and wind increase.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-emerald-600">4.</span>
+            <span>Keep Kaptai clean. Do not throw plastic bottles or wrappers into the lake.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold text-emerald-600">5.</span>
+            <span>Respect local hill community culture and temple dress codes at Chitmaram.</span>
+          </li>
+        </ol>
+        <p class="mt-7 text-sm bg-emerald-50 text-emerald-800 rounded-lg px-4 py-3">
+          Need boat or activity prices? Ask our AI Chat (bottom right corner).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BOOK A GUIDE SECTION ================= -->
+  <section id="book" class="bg-gradient-to-br from-emerald-900 via-emerald-950 to-slate-950 text-white py-24 text-center px-6">
+    <span class="inline-block px-4 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-semibold">
+      Powered by Vapi AI Voice + n8n
+    </span>
+    <h2 class="mt-5 text-3xl sm:text-4xl font-extrabold">Need a Local Guide in Kaptai?</h2>
+    <p class="mt-4 text-emerald-100 max-w-xl mx-auto">
+      Talk directly to our AI Voice Guide! Ask about guide fees, meeting times, pickup spots, and custom routes. Confirm your booking right on the call.
+    </p>
+    <a href="tel:+8801XXXXXXXXX"
+       class="inline-flex items-center gap-2 mt-8 px-10 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-emerald-950 text-lg font-bold transition">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
+      </svg>
+      Call to Book a Guide
+    </a>
+  </section>
+
+  <!-- ================= REVIEWS SECTION ================= -->
+  <section id="reviews" class="max-w-7xl mx-auto px-4 sm:px-6 py-20 grid gap-8 lg:grid-cols-5">
+
+    <!-- Review Form -->
+    <form id="reviewForm" class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-7 h-fit">
+      <h3 class="text-xl font-bold text-slate-900">Share Your Kaptai Experience</h3>
+      <p class="text-xs text-slate-500 mt-1">Leave a star rating and quick comment for upcoming travelers.</p>
+
+      <label class="block mt-5 text-xs font-semibold text-slate-700">Your Name</label>
+      <input id="revName" required type="text" placeholder="e.g. Tanvir Ahmed"
+        class="mt-1 w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+
+      <label class="block mt-5 text-xs font-semibold text-slate-700">Rating</label>
+      <div id="starPicker" class="mt-1 flex gap-1 text-2xl text-amber-400">
+        <button type="button" class="text-amber-400">★</button>
+        <button type="button" class="text-amber-400">★</button>
+        <button type="button" class="text-amber-400">★</button>
+        <button type="button" class="text-amber-400">★</button>
+        <button type="button" class="text-amber-400">★</button>
+      </div>
+
+      <label class="block mt-5 text-xs font-semibold text-slate-700">Comment</label>
+      <textarea id="revComment" required rows="3" placeholder="How was your trip to Kaptai?"
+        class="mt-1 w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+
+      <button type="button" class="mt-5 w-full py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition">
+        Submit Review
+      </button>
+    </form>
+
+    <!-- Review List (2 static sample review cards) -->
+    <div class="lg:col-span-3">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Recent Traveler Reviews</h3>
+      <div id="reviewList" class="space-y-4">
+        <!-- Sample Review 1 -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+          <div class="flex justify-between items-center">
+            <p class="font-semibold text-sm text-slate-900">Farhan Sadik</p>
+            <span class="text-amber-400 text-sm">★★★★★</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Kayaking at 7 AM was unforgettable! The Chattogram route guide here saved us so much time.</p>
+        </div>
+
+        <!-- Sample Review 2 -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+          <div class="flex justify-between items-center">
+            <p class="font-semibold text-sm text-slate-900">Maliha Rahman</p>
+            <span class="text-amber-400 text-sm">★★★★☆</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">Chitmaram Temple and Lake Paradise were super peaceful. The boat prices from the AI chat were very accurate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-950 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid gap-10 md:grid-cols-3">
+      <!-- Col 1: About -->
+      <div>
+        <h3 class="text-white font-bold text-lg">Visit Kaptai AI</h3>
+        <p class="mt-3 text-sm text-slate-400">
+          A smart full-stack tourism portal designed for visitors exploring Kaptai Lake, hill viewpoints, and cultural landmarks.
+        </p>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold text-xs tracking-widest mb-3">QUICK LINKS</h4>
+        <ul class="space-y-2 text-sm text-emerald-300">
+          <li><a href="#home" class="hover:text-white transition">Home</a></li>
+          <li><a href="#places" class="hover:text-white transition">Tourist Places</a></li>
+          <li><a href="#rules" class="hover:text-white transition">Rules</a></li>
+          <li><a href="#book" class="hover:text-white transition">Book a Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Emergency Contacts -->
+      <div>
+        <h4 class="text-white font-semibold text-xs tracking-widest mb-3">EMERGENCY CONTACTS</h4>
+        <ul class="space-y-2 text-sm">
+          <li>National Emergency: <span class="text-white font-semibold">999</span></li>
+          <li>Fire Service &amp; Ambulance: <span class="text-white font-semibold">16163</span></li>
+          <li>Tourist Police Helpline: <span class="text-white font-semibold">01320-160000</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sub-footer copyright -->
+    <div class="border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-slate-500">
+        <span>© 2026 Visit Kaptai AI. Web Development Project.</span>
+        <span>Built with HTML, Tailwind CSS &amp; n8n</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= ROUTE POPUP MODAL (HIDDEN) ================= -->
+  <!-- Kept hidden and cleanly structured for future JavaScript activation -->
+  <div id="routeModal" class="hidden fixed inset-0 z-[60] bg-black/60 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
+
+      <div class="flex items-start justify-between px-5 py-4 border-b border-slate-100">
+        <div>
+          <p class="text-xs font-bold tracking-widest text-emerald-700">ROUTE FROM CHITTAGONG</p>
+          <h3 id="routeTitle" class="font-bold text-lg text-slate-900">Kaptai Lake &amp; Kayak Club</h3>
+        </div>
+        <button id="routeClose" aria-label="Close" class="text-3xl leading-none text-slate-400 hover:text-slate-700">&times;</button>
+      </div>
+
+      <div class="p-5">
+        <!-- Google Map screenshot placeholder (Structure comment: image/routes/kaptai-lake.jpg) -->
+        <div class="relative h-56 rounded-xl overflow-hidden bg-slate-100 flex items-center justify-center text-sm text-slate-400">
+          Map screenshot will appear here
+          <!-- <img id="routeImg" src="image/routes/kaptai-lake.jpg" alt="Route map" class="absolute inset-0 w-full h-full object-cover" /> -->
+        </div>
+
+        <h4 class="mt-5 text-sm font-bold text-slate-900">How to go</h4>
+        <p id="routeHow" class="mt-1 text-sm text-slate-600">
+          Take a Rangamati-bound bus from Chittagong city (Bahaddarhat or Oxygen area) and get off at Kaptai Rastar Matha (approx. 1.5 to 2 hours). From there, take a CNG or rickshaw to the lake ghat (10 to 15 minutes).
+        </p>
+
+        <div class="mt-4 bg-emerald-50 border border-emerald-100 rounded-lg px-4 py-3">
+          <h4 class="text-sm font-bold text-emerald-800">Estimated cost</h4>
+          <p id="routeCost" class="mt-1 text-sm text-emerald-900">
+            Bus: ৳100–150 per person. CNG/rickshaw: ৳50–150. Total about ৳300–500 per person for a round trip.
+          </p>
+        </div>
+
+        <p class="mt-4 text-xs text-slate-400">Prices are estimates and can change. Ask our AI Chat for the latest budget.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAT WIDGET (FIXED, CIRCLE) ================= -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+
+    <!-- Chat Window (hidden by default, activate later via JS) -->
+    <div id="chatBox" class="hidden w-[22rem] sm:w-[26rem] h-[32rem] max-h-[75vh] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+      <!-- Chat Header -->
+      <div class="bg-emerald-700 text-white px-5 py-4 flex items-center justify-between">
+        <div>
+          <p class="font-semibold">Kaptai AI Guide</p>
+          <p class="text-xs text-emerald-100">Ask about places, rules, boat prices</p>
+        </div>
+        <button id="chatClose" class="text-2xl leading-none">&times;</button>
+      </div>
+
+      <!-- Chat Messages Body -->
+      <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-3 text-sm bg-slate-50">
+        <div class="bg-white border border-slate-200 rounded-xl px-3 py-2 max-w-[85%]">
+          Hello! Ask me anything about Kaptai: places, boat fares, activity prices, best time to visit.
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form id="chatForm" class="p-3 border-t border-slate-200 flex gap-2">
+        <input id="chatInput" type="text" placeholder="Type your question..." autocomplete="off"
+          class="flex-1 px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        <button type="button" class="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold">
+          Send
+        </button>
+      </form>
+    </div>
+
+    <!-- Glowing Bottom-Right AI Chat Button (Uses .chat-glow keyframes defined in <style>) -->
+    <button id="chatToggle" aria-label="Open AI Chat"
+      class="chat-glow w-20 h-20 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex flex-col items-center justify-center transition">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6l1.6-4.4A8 8 0 1112 20a8 8 0 01-3.4-.7L4 20z"/>
+      </svg>
+      <span class="text-[11px] font-bold leading-none mt-1">AI Chat</span>
+    </button>
+
+  </div>
+
+</body>
+</html>
