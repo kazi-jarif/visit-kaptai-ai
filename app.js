@@ -666,7 +666,122 @@ function setupChatbox() {
 
 
 // ==========================================================================
-// 7. INITIALIZATION (DOM CONTENT LOADED)
+// 7. FEATURE 6: VAPI AI VOICE CALL (In-Browser Voice Guide)
+// ==========================================================================
+
+// Vapi Public API Key & Assistant ID
+const VAPI_PUBLIC_KEY = "5f3127a6-1631-4ac5-927f-3d838525ccc5";
+const VAPI_ASSISTANT_ID = "7fc52ad1-47d2-4e7c-bdf4-3b2db91f1327";
+
+let vapiInstance = null;
+let isCallActive = false;
+
+/**
+ * Initializes and handles live voice calls with Kaptai AI Voice Assistant using Vapi
+ */
+function setupVapiVoiceCall() {
+  const callBtn = document.getElementById("vapiCallBtn");
+  const callBtnText = document.getElementById("vapiCallBtnText");
+  const statusText = document.getElementById("vapiStatus");
+
+  if (!callBtn) return;
+
+  // Helper function to reset button back to default emerald state
+  function resetCallButton() {
+    isCallActive = false;
+    callBtn.className = "inline-flex items-center gap-2 mt-8 px-10 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 text-lg font-bold shadow-lg transition";
+    if (callBtnText) callBtnText.textContent = "Call to Book a Guide";
+    if (statusText) {
+      statusText.classList.add("hidden");
+      statusText.textContent = "";
+    }
+  }
+
+  // Initialize Vapi SDK instance once loaded
+  function initVapi() {
+    if (window.vapiSDK && !vapiInstance) {
+      vapiInstance = window.vapiSDK.run({
+        apiKey: VAPI_PUBLIC_KEY,
+        assistant: VAPI_ASSISTANT_ID,
+        config: { position: "bottom-left" }
+      });
+
+      // Event listener: Call has started and microphone is active
+      vapiInstance.on("call-start", () => {
+        isCallActive = true;
+        callBtn.className = "inline-flex items-center gap-2 mt-8 px-10 py-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-lg font-bold shadow-lg transition";
+        if (callBtnText) callBtnText.textContent = "End Voice Call";
+        if (statusText) {
+          statusText.classList.remove("hidden");
+          statusText.textContent = "Live: Speak in Bengali with Kaptai AI Voice Guide...";
+        }
+      });
+
+      // Event listener: Call has ended
+      vapiInstance.on("call-end", () => {
+        resetCallButton();
+      });
+
+      // Event listener: Voice call error
+      vapiInstance.on("error", (err) => {
+        console.error("Vapi Voice Call error:", err);
+        resetCallButton();
+        if (statusText) {
+          statusText.classList.remove("hidden");
+          statusText.textContent = "Unable to connect voice call. Please check microphone permissions.";
+        }
+      });
+    }
+  }
+
+  // Check if SDK is already loaded or wait a moment for deferred script
+  if (window.vapiSDK) {
+    initVapi();
+  } else {
+    window.addEventListener("load", initVapi);
+  }
+
+  // Button click handler: toggle start/stop voice call
+  callBtn.addEventListener("click", () => {
+    // If SDK is still loading
+    if (!vapiInstance) {
+      initVapi();
+    }
+
+    if (!vapiInstance) {
+      alert("Voice guide service is still loading. Please try again in 2 seconds.");
+      return;
+    }
+
+    if (!isCallActive) {
+      // 1. Start voice call
+      if (callBtnText) callBtnText.textContent = "Connecting...";
+      if (statusText) {
+        statusText.classList.remove("hidden");
+        statusText.textContent = "Connecting to Kaptai AI Voice Guide...";
+      }
+      try {
+        vapiInstance.start(VAPI_ASSISTANT_ID);
+      } catch (e) {
+        console.error("Failed to start Vapi call:", e);
+        resetCallButton();
+      }
+    } else {
+      // 2. Stop voice call
+      if (callBtnText) callBtnText.textContent = "Ending...";
+      try {
+        vapiInstance.stop();
+      } catch (e) {
+        console.error("Failed to stop Vapi call:", e);
+        resetCallButton();
+      }
+    }
+  });
+}
+
+
+// ==========================================================================
+// 8. INITIALIZATION (DOM CONTENT LOADED)
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -688,4 +803,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 5. Setup AI chat widget toggling
   setupChatbox();
+
+  // 6. Setup Vapi AI Voice Guide call
+  setupVapiVoiceCall();
 });
