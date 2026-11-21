@@ -63,12 +63,13 @@
   </nav>
 
   <!-- ================= HERO SECTION ================= -->
-  <!-- Emerald & Teal gradient background with Kaptai lake & sunset gold highlights -->
-  <section id="home" class="relative min-h-[600px] h-[88vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-950">
+  <!-- Hero background image from image/hero_image.jpg with Kaptai lake & sunset gold highlights -->
+  <section id="home" class="relative min-h-[600px] h-[88vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-950"
+           style="background-image: url('image/hero_image.jpg'); background-size: cover; background-position: center;">
 
     <!-- Video/Image placeholder comments:
-         Add your video to 'video/kaptai.mp4' and poster to 'image/hero.jpg' later.
-         <video class="absolute inset-0 w-full h-full object-cover" poster="image/hero.jpg" autoplay muted loop playsinline>
+         Add your video to 'video/kaptai.mp4' later if needed.
+         <video class="absolute inset-0 w-full h-full object-cover" poster="image/hero_image.jpg" autoplay muted loop playsinline>
            <source src="video/kaptai.mp4" type="video/mp4" />
          </video>
     -->
@@ -463,21 +464,21 @@
       </div>
 
       <div class="p-5">
-        <!-- Google Map screenshot placeholder (Structure comment: image/routes/kaptai-lake.jpg) -->
+        <!-- Google Map screenshot container -->
         <div class="relative h-56 rounded-xl overflow-hidden bg-slate-100 flex items-center justify-center text-sm text-slate-400">
-          Map screenshot will appear here
-          <!-- <img id="routeImg" src="image/routes/kaptai-lake.jpg" alt="Route map" class="absolute inset-0 w-full h-full object-cover" /> -->
+          <span class="text-xs text-slate-400">Map screenshot will appear here</span>
+          <img id="routeImg" src="" alt="Route map" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
         </div>
 
         <h4 class="mt-5 text-sm font-bold text-slate-900">How to go</h4>
         <p id="routeHow" class="mt-1 text-sm text-slate-600">
-          Take a Rangamati-bound bus from Chittagong city (Bahaddarhat or Oxygen area) and get off at Kaptai Rastar Matha (approx. 1.5 to 2 hours). From there, take a CNG or rickshaw to the lake ghat (10 to 15 minutes).
+          Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat, Chittagong to Lichubagan. From Lichubagan, take local transport to Panorama Zoom / Kaptai Kayak Club (30 BDT).
         </p>
 
         <div class="mt-4 bg-emerald-50 border border-emerald-100 rounded-lg px-4 py-3">
           <h4 class="text-sm font-bold text-emerald-800">Estimated cost</h4>
           <p id="routeCost" class="mt-1 text-sm text-emerald-900">
-            Bus: ৳100–150 per person. CNG/rickshaw: ৳50–150. Total about ৳300–500 per person for a round trip.
+            One-way transport: 110 BDT (bus) or 130 BDT (CNG). Round trip: ~220–260 BDT/person. Kayaking: 100 BDT (30 min) or 200 BDT (1 hr) per boat (2 people).
           </p>
         </div>
 

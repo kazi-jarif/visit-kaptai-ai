@@ -14,143 +14,164 @@
 // ==========================================================================
 
 /**
- * List of all tourist spots in Kaptai & Rangamati.
+ * List of all 10 tourist spots in Kaptai & Rangamati region.
  * - First 6 places are shown by default.
  * - The remaining 4 items have `extra: true` and are revealed via "See More Places".
+ * - Images mapped directly to image/places/ directory.
  */
 const places = [
   {
     name: "Kaptai Lake & Kayak Club",
-    short: "Crystal emerald lake water surrounded by lush hills, famous for peaceful kayaking and sunrise boat rides.",
-    full: "Kaptai Lake is the largest man-made lake in Bangladesh. Early morning is the best time for kayaking and boat rides, when the water is calm and the hills are covered in mist.",
-    image: "image/places/kaptai-lake.jpg",
-    map: "Kaptai Lake",
-    video: "Kaptai Lake"
+    short: "Crystal emerald lake water surrounded by lush hills, famous for morning kayaking and sunrise boat rides.",
+    full: "Kaptai Lake is the largest man-made lake in Bangladesh. Early morning is the best time for kayaking and boat rides, when the water is calm and the hills are covered in mist. Kayak clubs offer hourly rentals and safety life jackets.",
+    image: "image/places/Kaptai Lake & Kayak Club.jpg",
+    map: "Kaptai Lake Kayak Club",
+    video: "Kaptai Lake Kayak Club",
+    phone: "01890-837441"
   },
   {
-    name: "Lake Paradise (Navy Camp)",
-    short: "Scenic lakeside picnic spot managed by Bangladesh Navy with panoramic viewpoints and boat pier.",
-    full: "A peaceful spot good for picnics, sunset views and short boat trips. Follow the entry rules and visiting hours at the gate.",
-    image: "image/places/lake-paradise.jpg",
+    name: "Lake Paradise (Bangladesh Navy Picnic Spot)",
+    short: "Scenic lakeside picnic spot managed by Bangladesh Navy with panoramic viewpoints and boat pier (carry ID).",
+    full: "A pristine, secure lakeside attraction maintained by the Bangladesh Navy. Features tidy walking paths, hillside picnic cottages, breathtaking views of the water horizon, and dedicated boat boarding piers. Valid identification is required at the security gate.",
+    image: "image/places/Lake Paradise (Bangladesh Navy Picnic Spot).webp",
     map: "Lake Paradise Kaptai",
-    video: "Lake Paradise Kaptai"
+    video: "Lake Paradise Kaptai Navy",
+    phone: "01769-772174"
   },
   {
     name: "Chitmaram Buddhist Temple",
-    short: "Historic hilltop golden temple overlooking the Karnaphuli River with serene Marma heritage.",
-    full: "A well-known Buddhist temple with a quiet atmosphere and a river view. Dress modestly and remove shoes before entering the temple area.",
-    image: "image/places/chitmaram-temple.jpg",
+    short: "Historic hilltop golden temple overlooking the Karnaphuli River with Marma heritage (dress modestly).",
+    full: "A revered historic Buddhist temple set quietly atop a hill overlooking the winding Karnaphuli River. Renowned for traditional Marma indigenous culture, Buddhist relics, and tranquil meditation surroundings. Visitors must dress modestly and remove shoes upon entering sacred grounds.",
+    image: "image/places/Chitmaram Buddhist Temple.jpg",
     map: "Chitmaram Buddhist Temple Kaptai",
-    video: "Chitmaram Buddhist Temple Kaptai"
+    video: "Chitmaram Buddhist Temple Kaptai",
+    phone: ""
   },
   {
-    name: "Shilchori & Hanging Bridge View",
-    short: "Misty hill trails, riverside suspension views, and quiet eco-resorts away from city crowds.",
-    full: "A calm area for walking, photography and enjoying the hills. Wear comfortable shoes because some trails can be slippery after rain.",
-    image: "image/places/shilchori.jpg",
-    map: "Shilchori Kaptai",
-    video: "Shilchori Kaptai"
+    name: "Sita Pahar",
+    short: "Famous scenic hill along the Karnaphuli River in Raikhali, known for lush trekking trails, Sita Ghat, and local heritage.",
+    full: "Rising along the scenic riverbanks in Raikhali, Sita Pahar is steeped in folklore and natural grandeur. An ideal destination for adventure trekkers, featuring forested ridges, natural bamboo groves, and panoramic vistas of the winding Karnaphuli River.",
+    image: "image/places/Sita Pahar.jpg",
+    map: "Sita Pahar Kaptai Raikhali",
+    video: "Sita Pahar Kaptai",
+    phone: ""
   },
   {
-    name: "Kaptai National Park",
-    short: "Dense tropical forest reserve home to teak trees, nature trails, and wild birds along Kaptai road.",
-    full: "A protected forest area good for bird watching and nature walks. Keep the forest clean and do not disturb wildlife.",
-    image: "image/places/national-park.jpg",
-    map: "Kaptai National Park",
-    video: "Kaptai National Park"
+    name: "Karnaphuli Hydroelectric Dam (Kaptai Dam)",
+    short: "Iconic hydroelectric dam that formed Kaptai Lake (photography restricted in guarded zones).",
+    full: "Constructed across the Karnaphuli River in the early 1960s, this historic dam gave birth to Kaptai Lake. It remains Bangladesh's singular hydroelectric power station. Visitors can view the spillway and spill gates; note that security regulations prohibit photography within guarded defense zones.",
+    image: "image/places/Karnaphuli Hydroelectric Dam (Kaptai Dam).jpg",
+    map: "Kaptai Dam",
+    video: "Kaptai Dam Hydroelectric",
+    phone: ""
   },
   {
-    name: "Zoom Restaurant & Lake View",
-    short: "Iconic hilltop lakeside dining spot famous for sunset views over Kaptai Lake.",
-    full: "A good place to relax after sightseeing. Come near sunset for the best view, and arrive early on weekends because it gets crowded.",
-    image: "image/places/zoom-restaurant.jpg",
-    map: "Zoom Restaurant Kaptai",
-    video: "Zoom Restaurant Kaptai"
+    name: "Panorama Zoom Restaurant & Lake View",
+    short: "Popular hilltop lakeside dining spot famous for sunset views over Kaptai Lake.",
+    full: "Perched high above the shoreline, Panorama Zoom Restaurant delivers a panoramic 180-degree view of Kaptai's tranquil waters and surrounding green hills. Best visited late in the afternoon to savor fresh indigenous delicacies while watching the sunset over the lake.",
+    image: "image/places/Panorama Zoom Restaurant & Lake View.jpg",
+    map: "Panorama Zoom Restaurant Kaptai",
+    video: "Panorama Zoom Restaurant Kaptai",
+    phone: "01669-611387"
   },
 
   // Extra places revealed by clicking "See More Places"
   {
-    name: "Karnaphuli Dam (Kaptai Dam)",
-    short: "The hydroelectric dam that created Kaptai Lake.",
-    full: "A major landmark of the region. Photography is restricted in some parts, so follow the signs and instructions of the guards.",
-    image: "image/places/kaptai-dam.jpg",
-    map: "Kaptai Dam",
-    video: "Kaptai Dam",
+    name: "Shilchori & Nisarga Pod House",
+    short: "Peaceful riverside area with misty hill views and Bangladesh's famous pod-style eco-resorts along the Karnaphuli River.",
+    full: "Shilchori is famed for its innovative wooden pod-style eco-resorts nestled right along the pristine riverbanks. Visitors can relax amidst tranquil mist, cross local suspension bridges, and experience hillside eco-cottages away from city noise.",
+    image: "image/places/Shilchori & Nisarga Pod House.jpg",
+    map: "Nisarga Pod House Shilchori Kaptai",
+    video: "Nisarga Pod House Shilchori Kaptai",
+    phone: "01818-441100",
     extra: true
   },
   {
-    name: "Rajban Vihar",
-    short: "Famous Buddhist monastery near Rangamati.",
-    full: "One of the most important Buddhist temples in the hill region, with beautiful architecture and a peaceful garden.",
-    image: "image/places/rajban-vihar.jpg",
-    map: "Rajban Vihar",
-    video: "Rajban Vihar",
+    name: "Karnafuly Tea Garden (Boroichori / Wagga)",
+    short: "Lush green tea estate near Boroichori along the Kaptai road, great for morning walks and photography.",
+    full: "A verdant carpet of rolling tea bushes situated in the Boroichori and Wagga valley along the road to Kaptai. One of the oldest tea gardens in the Chittagong Hill Tracts, offering serene mornings, refreshing hill air, and scenic photographic spots.",
+    image: "image/places/Karnafuly Tea Garden (Boroichori).jpg",
+    map: "Karnafuly Tea Garden Boroichori Kaptai",
+    video: "Karnafuly Tea Garden Kaptai",
+    phone: "01717-122830",
     extra: true
   },
   {
-    name: "Rangamati Hanging Bridge",
-    short: "Iconic suspension bridge over the lake.",
-    full: "A popular photo spot and a symbol of Rangamati. Visit in the morning to avoid crowds.",
-    image: "image/places/hanging-bridge.jpg",
-    map: "Rangamati Hanging Bridge",
-    video: "Rangamati Hanging Bridge",
+    name: "Aviary and Eco Park (Rangunia–Kaptai Road)",
+    short: "Scenic eco-park and bird sanctuary featuring cable car rides, lake views, and hill trails on the way to Kaptai.",
+    full: "Located along the scenic highway between Rangunia and Kaptai, this expansive eco-park features an aerial cable car ride across lush ravines, a large botanical aviary with native and migratory birds, serene walking bridges, and hillside picnic areas.",
+    image: "image/places/Aviary and Eco Park (Rangunia–Kaptai Road).jpg",
+    map: "Sheikh Russel Aviary and Eco Park Rangunia",
+    video: "Sheikh Russel Aviary Eco Park Rangunia",
+    phone: "01852-224252",
     extra: true
   },
   {
-    name: "Shuvolong Waterfall",
-    short: "A scenic waterfall reached by a boat ride.",
-    full: "Reached by boat from the Rangamati side. Best visited in or just after the rainy season when the water flow is strong.",
-    image: "image/places/shuvolong.jpg",
-    map: "Shuvolong Waterfall",
-    video: "Shuvolong Waterfall",
+    name: "Paharika Picnic Spot & Restaurant",
+    short: "Quiet lakeside picnic and hangout spot on the Chittagong–Kaptai Road surrounded by greenery.",
+    full: "A quiet and family-friendly picnic spot along the Chittagong–Kaptai corridor surrounded by shade trees and water viewpoints. Perfect for day-trippers seeking a relaxed meal and group leisure in a clean green environment.",
+    image: "image/places/Paharika Picnic Spot & Restaurant.jpg",
+    map: "Paharika Picnic Spot Kaptai",
+    video: "Paharika Picnic Spot Kaptai",
+    phone: "01723-350834",
     extra: true
   }
 ];
 
 /**
- * Route details from Chittagong for each place.
+ * Route details from Chittagong for each of the 10 places.
  * Displayed in the #routeModal popup.
  */
 const routes = {
   "Kaptai Lake & Kayak Club": {
-    how: "Take a Rangamati-bound bus from Chittagong city (Bahaddarhat or Oxygen area) and get off at Kaptai Rastar Matha. This takes about 1.5 to 2 hours. From there, take a CNG or rickshaw to the lake ghat (10 to 15 minutes).",
-    cost: "Bus: ৳100–150 per person. CNG/rickshaw: ৳50–150. Total about ৳300–500 per person for a round trip."
+    image: "image/route/image.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat, Chittagong to Lichubagan. From Lichubagan, take local transport to Panorama Zoom / Kaptai Kayak Club (30 BDT).",
+    cost: "One-way transport: 110 BDT (bus) or 130 BDT (CNG). Round trip: ~220–260 BDT/person. Kayaking: 100 BDT (30 min) or 200 BDT (1 hr) per boat (2 people)."
   },
-  "Lake Paradise (Navy Camp)": {
-    how: "Reach Kaptai Rastar Matha by Rangamati-bound bus from Chittagong (about 1.5 to 2 hours), then take a CNG to Lake Paradise (about 10 minutes). Carry an ID because there are entry checks.",
-    cost: "Bus: ৳100–150. CNG: ৳100–200. Entry ticket: small fee at the gate. Total about ৳400–600 per person round trip."
+  "Lake Paradise (Bangladesh Navy Picnic Spot)": {
+    image: "image/route/image copy.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then go to Kaptai Notun Bazar (50 BDT). From Notun Bazar, hire a reserve CNG directly to Lake Paradise (150 BDT; no local option).",
+    cost: "130–150 BDT/person to Notun Bazar + 150 BDT reserve CNG (one-way, ~38 BDT/person if 4 share)."
   },
   "Chitmaram Buddhist Temple": {
-    how: "Go to Kaptai by bus from Chittagong, then continue by boat or CNG toward Chitmaram. The last part of the route can change with the water level, so confirm with a local guide.",
-    cost: "Bus: ৳100–150. Boat or CNG for the last part: ৳300–1,000 depending on group size. Temple entry is usually free."
+    image: "image/route/image copy 2.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then local transport to Chitmaram ghat (40 BDT), and cross the river by boat (20 BDT).",
+    cost: "One-way: 140 BDT (bus) or 160 BDT (CNG). Round trip: ~280–320 BDT/person."
   },
-  "Shilchori & Hanging Bridge View": {
-    how: "Take a bus from Chittagong toward Kaptai, then a CNG or local boat to the Shilchori area. A local guide is recommended because the trails and boat points are not well marked.",
-    cost: "Bus: ৳100–150. CNG/boat: ৳300–800. Guide: ask on call. Budget ৳600–1,200 per person."
+  "Sita Pahar": {
+    image: "image/route/image copy 3.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then local transport along Kaptai Road (35 BDT).",
+    cost: "One-way: 115 BDT (bus) or 135 BDT (CNG). Round trip: ~230–270 BDT/person."
   },
-  "Kaptai National Park": {
-    how: "The park is along the Kaptai road. Take a Kaptai-bound bus from Chittagong and tell the helper your stop, or hire a CNG from Kaptai Rastar Matha.",
-    cost: "Bus: ৳100–150. CNG: ৳100–300. Park entry ticket: small fee. Total about ৳400–600 per person."
+  "Karnaphuli Hydroelectric Dam (Kaptai Dam)": {
+    image: "image/route/image copy 4.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then to Project Gate (60 BDT). Entry is restricted (requires a known official); Gate to Dam is 20 BDT.",
+    cost: "One-way: 160 BDT (bus) or 180 BDT (CNG). Round trip: ~320–360 BDT/person."
   },
-  "Zoom Restaurant & Lake View": {
-    how: "Reach Kaptai Rastar Matha by bus from Chittagong, then take a CNG to the restaurant. Best to arrive in the late afternoon for sunset.",
-    cost: "Bus: ৳100–150. CNG: ৳100–200. Meal: ৳300–600 per person. Total about ৳700–1,100 per person."
+  "Panorama Zoom Restaurant & Lake View": {
+    image: "image/route/image copy 5.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then local transport to Panorama Zoom Restaurant (30 BDT).",
+    cost: "One-way: 110 BDT (bus) or 130 BDT (CNG). Round trip: ~220–260 BDT/person (excluding meals)."
   },
-  "Karnaphuli Dam (Kaptai Dam)": {
-    how: "Take a Kaptai-bound bus from Chittagong (about 1.5 to 2 hours) and get off at Kaptai. The dam area is reachable by a short CNG ride. Photography is restricted in some parts.",
-    cost: "Bus: ৳100–150. CNG: ৳50–150. Total about ৳300–400 per person round trip."
+  "Shilchori & Nisarga Pod House": {
+    image: "image/route/image copy 6.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then local transport to Shilchori / Nisarga Pod House (~40 BDT).",
+    cost: "One-way: ~120 BDT (bus) or ~140 BDT (CNG). Round trip: ~240–280 BDT/person (excluding resort stay)."
   },
-  "Rajban Vihar": {
-    how: "Take a Rangamati-bound bus from Chittagong (about 2.5 to 3 hours), then a CNG from Rangamati town to Rajban Vihar.",
-    cost: "Bus: ৳150–250. CNG: ৳100–200. Total about ৳500–800 per person round trip."
+  "Karnafuly Tea Garden (Boroichori / Wagga)": {
+    image: "image/route/image copy 7.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan. Walk 3–4 min along the right-side road to the ferry ghat, cross by boat (10 BDT), then take a reserve CNG to the tea garden (200 BDT).",
+    cost: "90–110 BDT/person to ferry + 200 BDT reserve CNG (one-way, split among 4–5 people)."
   },
-  "Rangamati Hanging Bridge": {
-    how: "Take a Rangamati-bound bus from Chittagong, then walk or take a CNG from the bus stand to the bridge. Entry to the bridge area has a small ticket.",
-    cost: "Bus: ৳150–250. CNG: ৳50–100. Bridge ticket: small fee. Total about ৳400–700 per person round trip."
+  "Aviary and Eco Park (Rangunia–Kaptai Road)": {
+    image: "image/route/image copy 8.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then local transport to Aviary & Eco Park (~20 BDT). Note: Closed on Tuesdays.",
+    cost: "One-way: ~100 BDT (bus) or ~120 BDT (CNG). Round trip: ~200–240 BDT/person (excluding entry/cable car tickets)."
   },
-  "Shuvolong Waterfall": {
-    how: "Go to Rangamati by bus, then hire a boat from the tourist ghat to Shuvolong. The boat ride takes about 45 minutes to 1 hour each way.",
-    cost: "Bus: ৳150–250. Boat: ৳1,500–3,000 per boat (shared among the group). Budget ৳1,000–1,800 per person."
+  "Paharika Picnic Spot & Restaurant": {
+    image: "image/route/image copy 9.png",
+    how: "Take a bus (80 BDT) or CNG (100 BDT) from Bahaddarhat to Lichubagan, then local transport along Kaptai Road to Paharika (30 BDT).",
+    cost: "One-way: 110 BDT (bus) or 130 BDT (CNG). Round trip: ~220–260 BDT/person (excluding meals)."
   }
 };
 
@@ -198,7 +219,7 @@ let showingAllPlaces = false;
 
 /**
  * Renders all place cards dynamically into #placesGrid.
- * Uses emerald/slate placeholder boxes with zero broken image tags.
+ * Renders real <img> tags from image/places/ with an emerald/teal gradient fallback.
  */
 function renderPlaces() {
   if (!placesGrid) return;
@@ -211,13 +232,10 @@ function renderPlaces() {
     card.className = "place-card bg-white rounded-2xl border border-emerald-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition p-2 flex flex-col" + (place.extra ? " hidden extra-place" : "");
     card.dataset.search = (place.name + " " + place.short + " " + place.full).toLowerCase();
 
-    // Placeholder gradient box: Deep teal to emerald gradient matching the Kaptai lake palette
+    // Image container: Displays real <img> tag with emerald/teal fallback gradient
     card.innerHTML = `
-      <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-700 via-teal-700 to-cyan-800 flex flex-col items-center justify-center text-emerald-100 p-4 text-center">
-        <svg class="w-10 h-10 mb-2 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-        </svg>
-        <span class="text-xs font-semibold tracking-wide uppercase">${place.name}</span>
+      <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-700 via-teal-700 to-cyan-800">
+        <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover" onerror="this.style.display='none'" />
       </div>
       <div class="p-4 flex flex-col flex-1">
         <h3 class="font-bold text-lg text-slate-900">${place.name}</h3>
@@ -238,6 +256,13 @@ function renderPlaces() {
                class="px-3 py-1.5 rounded-md bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 text-xs font-semibold transition">
               Video
             </a>
+            ${place.phone ? `
+            <a href="tel:${place.phone}" class="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-semibold inline-flex items-center gap-1 transition">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
+              </svg>
+              ${place.phone}
+            </a>` : ""}
           </div>
         </div>
       </div>
@@ -329,6 +354,7 @@ const routeTitle = document.getElementById("routeTitle");
 const routeHow = document.getElementById("routeHow");
 const routeCost = document.getElementById("routeCost");
 const routeClose = document.getElementById("routeClose");
+const routeImg = document.getElementById("routeImg");
 
 /**
  * Opens route popup for the given place name.
@@ -337,6 +363,7 @@ function openRouteModal(placeName) {
   if (!routeModal) return;
 
   const routeInfo = routes[placeName] || {
+    image: "",
     how: "Route details will be updated soon. Please ask in our AI Chat.",
     cost: "Estimated budget will be provided shortly."
   };
@@ -344,6 +371,16 @@ function openRouteModal(placeName) {
   if (routeTitle) routeTitle.textContent = placeName;
   if (routeHow) routeHow.textContent = routeInfo.how;
   if (routeCost) routeCost.textContent = routeInfo.cost;
+
+  if (routeImg) {
+    if (routeInfo.image) {
+      routeImg.style.display = "block";
+      routeImg.src = routeInfo.image;
+    } else {
+      routeImg.style.display = "none";
+      routeImg.src = "";
+    }
+  }
 
   routeModal.classList.remove("hidden");
 }
@@ -508,11 +545,14 @@ function setupReviewForm() {
 
 
 // ==========================================================================
-// 6. FEATURE 5: AI CHATBOX TOGGLE & N8N WEBHOOK PLACEHOLDER
+// 6. FEATURE 5: AI CHATBOX (Connected to Live n8n Webhook)
 // ==========================================================================
 
-// Placeholder ready for n8n Webhook connection in the next step
-const N8N_WEBHOOK_URL = "PASTE_YOUR_N8N_WEBHOOK_URL_HERE";
+// Live n8n Production Webhook URL
+const N8N_WEBHOOK_URL = "https://n8n.hablu-programmer.com/webhook/kaptai-chat";
+
+// Unique session ID generated per page load so n8n Simple Memory remembers conversation history
+const sessionId = "user-" + Math.random().toString(36).slice(2, 10);
 
 function setupChatbox() {
   const chatBox = document.getElementById("chatBox");
@@ -522,6 +562,7 @@ function setupChatbox() {
   const chatInput = document.getElementById("chatInput");
   const chatForm = document.getElementById("chatForm");
   const chatMessages = document.getElementById("chatMessages");
+  const sendButton = chatForm ? chatForm.querySelector("button") : null;
 
   if (!chatBox) return;
 
@@ -553,37 +594,71 @@ function setupChatbox() {
     });
   }
 
-  // Helper to append a chat bubble safely
+  // Helper to append a chat bubble safely (uses whitespace-pre-line for bullet points & line breaks)
   function appendChatMessage(text, sender) {
     if (!chatMessages) return null;
 
     const bubble = document.createElement("div");
     bubble.className = sender === "user"
-      ? "bg-emerald-600 text-white rounded-xl px-3 py-2 max-w-[85%] ml-auto text-sm"
-      : "bg-white border border-slate-200 rounded-xl px-3 py-2 max-w-[85%] text-sm text-slate-800";
-    bubble.textContent = text; // Safe assignment
+      ? "bg-emerald-600 text-white rounded-xl px-3 py-2 max-w-[85%] ml-auto text-sm whitespace-pre-line"
+      : "bg-white border border-slate-200 rounded-xl px-3 py-2 max-w-[85%] text-sm text-slate-800 whitespace-pre-line";
+    bubble.textContent = text; // Safe text assignment
 
     chatMessages.appendChild(bubble);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     return bubble;
   }
 
-  // Optional: Handle chat message form submission (ready for webhook)
+  // Async submit handler connected to live n8n AI webhook
   if (chatForm && chatInput) {
-    chatForm.addEventListener("submit", (e) => {
+    chatForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const message = chatInput.value.trim();
       if (!message) return;
 
-      // Show user message
+      // 1. Render user message bubble & clear input field
       appendChatMessage(message, "user");
       chatInput.value = "";
 
-      // Notice placeholder
-      if (N8N_WEBHOOK_URL === "PASTE_YOUR_N8N_WEBHOOK_URL_HERE") {
-        setTimeout(() => {
-          appendChatMessage("Chatbot webhook is ready! Connect your n8n Webhook URL in app.js to enable live AI responses.", "bot");
-        }, 500);
+      // 2. Render temporary "Typing..." bot bubble and disable send button
+      const typingBubble = appendChatMessage("Typing...", "bot");
+      if (sendButton) {
+        sendButton.disabled = true;
+        sendButton.classList.add("opacity-50", "cursor-not-allowed");
+      }
+
+      try {
+        // 3. Send message & sessionId to live n8n webhook
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: message,
+            sessionId: sessionId
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+
+        // 4. Parse JSON reply from n8n ({ "reply": "..." })
+        const data = await response.json();
+        typingBubble.textContent = data.reply || "Sorry, no reply received.";
+      } catch (err) {
+        console.error("AI Chat webhook error:", err);
+        typingBubble.textContent = "Sorry, I couldn't connect to the AI guide right now. Please try again.";
+      } finally {
+        // 5. Re-enable send button
+        if (sendButton) {
+          sendButton.disabled = false;
+          sendButton.classList.remove("opacity-50", "cursor-not-allowed");
+        }
+        if (chatMessages) {
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
       }
     });
   }
