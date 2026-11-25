@@ -228,14 +228,14 @@ function renderPlaces() {
   places.forEach((place) => {
     const card = document.createElement("div");
     // Extra places start hidden until "See More Places" is clicked
-    // Card with subtle emerald border, shadow on hover, and smooth translate effect
-    card.className = "place-card bg-white rounded-2xl border border-emerald-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition p-2 flex flex-col" + (place.extra ? " hidden extra-place" : "");
+    // Card with soft 3D depth, subtle emerald border, and group hover zoom
+    card.className = "place-card card-3d group bg-white rounded-2xl border border-emerald-100/80 p-2 flex flex-col" + (place.extra ? " hidden extra-place" : "");
     card.dataset.search = (place.name + " " + place.short + " " + place.full).toLowerCase();
 
-    // Image container: Displays real <img> tag with emerald/teal fallback gradient
+    // Image container: Displays real <img> tag with smooth 3D hover zoom and emerald/teal fallback gradient
     card.innerHTML = `
       <div class="h-48 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-700 via-teal-700 to-cyan-800">
-        <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+        <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" onerror="this.style.display='none'" />
       </div>
       <div class="p-4 flex flex-col flex-1">
         <h3 class="font-bold text-lg text-slate-900">${place.name}</h3>
@@ -244,7 +244,7 @@ function renderPlaces() {
           <span class="see-more-toggle cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
         </p>
         <div class="mt-auto pt-4">
-          <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2">
+          <div class="border-t border-slate-100 pt-4 flex flex-wrap gap-2 min-h-[72px] content-start">
             <button type="button" class="route-btn px-3 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition">
               Route from Chittagong
             </button>
@@ -456,20 +456,31 @@ function renderReviewsList() {
 
   reviewsData.forEach((rev) => {
     const card = document.createElement("div");
-    card.className = "bg-white rounded-xl border border-slate-200 shadow-sm p-5";
+    card.className = "card-3d bg-white rounded-xl border border-emerald-100 p-5";
 
     const headerDiv = document.createElement("div");
     headerDiv.className = "flex justify-between items-center";
+
+    // Author group: circular emerald initial avatar + reviewer name
+    const authorDiv = document.createElement("div");
+    authorDiv.className = "flex items-center gap-2.5";
+
+    const avatarSpan = document.createElement("span");
+    avatarSpan.className = "w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center";
+    avatarSpan.textContent = rev.name.charAt(0).toUpperCase(); // Safe assignment
 
     const nameP = document.createElement("p");
     nameP.className = "font-semibold text-sm text-slate-900";
     nameP.textContent = rev.name; // Safe assignment
 
+    authorDiv.appendChild(avatarSpan);
+    authorDiv.appendChild(nameP);
+
     const starsSpan = document.createElement("span");
     starsSpan.className = "text-amber-400 text-sm";
     starsSpan.textContent = formatStars(rev.rating); // Safe assignment
 
-    headerDiv.appendChild(nameP);
+    headerDiv.appendChild(authorDiv);
     headerDiv.appendChild(starsSpan);
 
     const commentP = document.createElement("p");

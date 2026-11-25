@@ -23,15 +23,39 @@
 
     /* Hide Vapi default floating widget so it doesn't clash with our bottom-right AI Chat */
     #vapi-support-btn, .vapi-btn { display: none !important; }
+
+    /* Gentle floating animation for hero highlight chips */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .float-slow { animation: float 3s ease-in-out infinite; }
+
+    /* Soft 3D card depth with smooth lift on hover */
+    .card-3d {
+      box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-3d:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 35px -8px rgba(6, 78, 59, 0.22);
+    }
+
+    /* Tactile 3D push button effect */
+    .btn-3d {
+      border-bottom-width: 4px;
+      transition: transform 0.15s ease;
+    }
+    .btn-3d:active { transform: translateY(2px); }
   </style>
 </head>
 
 <body class="bg-white text-slate-800">
 
   <!-- ================= NAVBAR ================= -->
-  <!-- Fixed Black Glass Navigation Bar -->
-  <nav class="fixed top-0 left-0 w-full z-40 bg-gradient-to-b from-black/90 to-black/40 backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+  <!-- Floating 3D Glassmorphism Navigation Bar -->
+  <nav class="fixed top-3 left-0 right-0 z-40 px-4">
+    <div class="max-w-7xl mx-auto rounded-2xl bg-slate-950/75 backdrop-blur-md border border-white/15 shadow-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
 
       <!-- Left: Logo with name below -->
       <a href="#home" class="flex flex-col items-center gap-1">
@@ -50,15 +74,15 @@
         <a href="#rules" class="hover:text-emerald-400 transition">Rules</a>
       </div>
 
-      <!-- Right: Action Buttons -->
+      <!-- Right: Tactile 3D Action Buttons -->
       <div class="flex items-center gap-2">
-        <a href="tel:999" class="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold transition">
+        <a href="tel:999" class="btn-3d border-rose-800 flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs sm:text-sm font-semibold">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
           </svg>
           Emergency Call
         </a>
-        <a href="#book" class="px-3 sm:px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition">
+        <a href="#book" class="btn-3d border-emerald-800 px-3 sm:px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-semibold shadow-sm">
           Book a Guide
         </a>
       </div>
@@ -80,8 +104,8 @@
 
     <div class="relative z-10 text-center text-white px-6 max-w-4xl pt-16">
 
-      <!-- Static Live Weather Pill with emerald & gold accent -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-emerald-500/30 text-xs font-medium backdrop-blur">
+      <!-- Frosted 3D Glass Live Weather Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-950/55 backdrop-blur-md border border-emerald-400/30 shadow-lg text-xs font-medium">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
         <span id="weatherText" class="text-emerald-100">Kaptai Live: 27°C • Wind 5.3 km/h</span>
       </div>
@@ -94,10 +118,17 @@
         Your smart travel companion before you arrive. Explore hidden lake spots, direct routes from Chattogram, live weather, and book a local guide with AI voice assistance.
       </p>
 
-      <!-- Hero Buttons with gradient polish -->
+      <!-- Hero Tactile 3D Buttons -->
       <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="#places" class="px-7 py-3 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold shadow-md transition">Explore Places</a>
-        <button id="budgetBtn" class="px-7 py-3 rounded-lg bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold backdrop-blur transition">Let's Estimate the Budget</button>
+        <a href="#places" class="btn-3d border-emerald-800 px-7 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold shadow-lg">Explore Places</a>
+        <button id="budgetBtn" class="btn-3d border-white/30 px-7 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold backdrop-blur-md shadow-lg">Let's Estimate the Budget</button>
+      </div>
+
+      <!-- Floating Glass Highlight Chips -->
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <span class="float-slow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 text-xs font-semibold shadow-lg">10+ Scenic Spots</span>
+        <span class="float-slow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 text-xs font-semibold shadow-lg" style="animation-delay: 0.4s;">24/7 AI Budget Guide</span>
+        <span class="float-slow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 text-xs font-semibold shadow-lg" style="animation-delay: 0.8s;">Bangla AI Voice Call</span>
       </div>
     </div>
   </section>
@@ -294,64 +325,67 @@
   </section>
 
   <!-- ================= RULES SECTION ================= -->
-  <!-- Subtle bg-emerald-50/60 background tint for Kaptai Travel Rules -->
+  <!-- Subtle bg-emerald-50/60 background tint with 3D rule cards -->
   <section id="rules" class="bg-emerald-50/60 border-y border-emerald-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
       <p class="text-xs font-bold tracking-widest text-emerald-700 text-center">GUIDELINES</p>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-center mt-1 mb-10 text-slate-900">Kaptai Travel Rules</h2>
 
-      <div class="max-w-3xl mx-auto bg-white rounded-2xl border border-emerald-100 shadow-sm p-8">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 font-extrabold flex items-center justify-center">!</span>
-          <h3 class="text-lg font-bold text-slate-900">Important Visitor Rules</h3>
+      <!-- 5 individual 3D rule cards in a responsive grid -->
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <div class="card-3d bg-white rounded-2xl p-6 border border-emerald-100">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-extrabold flex items-center justify-center shadow-md mb-4">1</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Always wear a life jacket when boating or kayaking on Kaptai Lake.</p>
         </div>
-        <ol class="space-y-4 text-sm text-slate-700">
-          <li class="flex gap-3">
-            <span class="font-bold text-emerald-600">1.</span>
-            <span>Always wear a life jacket when boating or kayaking on Kaptai Lake.</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="font-bold text-emerald-600">2.</span>
-            <span>Photography is strictly prohibited near Kaptai Hydroelectric Dam &amp; restricted defense zones.</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="font-bold text-emerald-600">3.</span>
-            <span>Return from deep lake islands before 5:00 PM as evening fog and wind increase.</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="font-bold text-emerald-600">4.</span>
-            <span>Keep Kaptai clean. Do not throw plastic bottles or wrappers into the lake.</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="font-bold text-emerald-600">5.</span>
-            <span>Respect local hill community culture and temple dress codes at Chitmaram.</span>
-          </li>
-        </ol>
-        <p class="mt-7 text-sm bg-emerald-50/90 text-emerald-800 rounded-lg px-4 py-3 border border-emerald-200/50">
-          Need boat or activity prices? Ask our AI Chat (bottom right corner).
-        </p>
+
+        <div class="card-3d bg-white rounded-2xl p-6 border border-emerald-100">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-extrabold flex items-center justify-center shadow-md mb-4">2</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Photography is strictly prohibited near Kaptai Hydroelectric Dam &amp; restricted defense zones.</p>
+        </div>
+
+        <div class="card-3d bg-white rounded-2xl p-6 border border-emerald-100">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-extrabold flex items-center justify-center shadow-md mb-4">3</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Return from deep lake islands before 5:00 PM as evening fog and wind increase.</p>
+        </div>
+
+        <div class="card-3d bg-white rounded-2xl p-6 border border-emerald-100">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-extrabold flex items-center justify-center shadow-md mb-4">4</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Keep Kaptai clean. Do not throw plastic bottles or wrappers into the lake.</p>
+        </div>
+
+        <div class="card-3d bg-white rounded-2xl p-6 border border-emerald-100">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-extrabold flex items-center justify-center shadow-md mb-4">5</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Respect local hill community culture and temple dress codes at Chitmaram.</p>
+        </div>
       </div>
+
+      <!-- AI Chat Tip Banner centered below the grid -->
+      <p class="mt-8 max-w-xl mx-auto text-center text-sm bg-white/90 text-emerald-800 rounded-xl px-5 py-3 border border-emerald-200/70 shadow-sm">
+        Need boat or activity prices? Ask our AI Chat (bottom right corner).
+      </p>
     </div>
   </section>
 
   <!-- ================= BOOK A GUIDE SECTION ================= -->
-  <!-- Deep Teal & Emerald gradient background with glowing call button -->
+  <!-- Deep Teal & Emerald gradient with centered frosted 3D glass card -->
   <section id="book" class="bg-gradient-to-br from-emerald-950 via-teal-950 to-slate-950 text-white py-24 text-center px-6">
-    <span class="inline-block px-4 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-semibold">
-      Powered by Vapi AI Voice + n8n
-    </span>
-    <h2 class="mt-5 text-3xl sm:text-4xl font-extrabold">Need a Local Guide in Kaptai?</h2>
-    <p class="mt-4 text-emerald-100 max-w-xl mx-auto">
-      Talk directly to our AI Voice Guide! Ask about guide fees, meeting times, pickup spots, and custom routes. Confirm your booking right on the call.
-    </p>
-    <button id="vapiCallBtn" type="button"
-       class="inline-flex items-center gap-2 mt-8 px-10 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 text-lg font-bold shadow-lg transition">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
-      </svg>
-      <span id="vapiCallBtnText">Call to Book a Guide</span>
-    </button>
-    <p id="vapiStatus" class="mt-3 text-sm text-emerald-200 hidden"></p>
+    <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 sm:p-12 shadow-2xl">
+      <span class="inline-block px-4 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-semibold">
+        Powered by Vapi AI Voice + n8n
+      </span>
+      <h2 class="mt-5 text-3xl sm:text-4xl font-extrabold">Need a Local Guide in Kaptai?</h2>
+      <p class="mt-4 text-emerald-100 max-w-xl mx-auto">
+        Talk directly to our AI Voice Guide! Ask about guide fees, meeting times, pickup spots, and custom routes. Confirm your booking right on the call.
+      </p>
+      <button id="vapiCallBtn" type="button"
+         class="btn-3d border-emerald-700 shadow-xl shadow-emerald-500/25 inline-flex items-center gap-2 mt-8 px-10 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 text-lg font-bold">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
+        </svg>
+        <span id="vapiCallBtnText">Call to Book a Guide</span>
+      </button>
+      <p id="vapiStatus" class="mt-3 text-sm text-emerald-200 hidden"></p>
+    </div>
   </section>
 
   <!-- ================= REVIEWS SECTION ================= -->
@@ -359,8 +393,8 @@
   <section id="reviews" class="bg-gradient-to-b from-white to-emerald-50/40 py-20 border-b border-emerald-100/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-5">
 
-    <!-- Review Form -->
-    <form id="reviewForm" class="lg:col-span-2 bg-white rounded-2xl border border-emerald-100 shadow-sm p-7 h-fit">
+    <!-- Review Form with crisp 3D card frame -->
+    <form id="reviewForm" class="lg:col-span-2 bg-white rounded-2xl border border-emerald-100 border-b-4 border-b-emerald-200 shadow-xl p-7 h-fit">
       <h3 class="text-xl font-bold text-slate-900">Share Your Kaptai Experience</h3>
       <p class="text-xs text-slate-500 mt-1">Leave a star rating and quick comment for upcoming travelers.</p>
 
@@ -446,9 +480,9 @@
       </div>
     </div>
 
-    <!-- Sub-footer copyright -->
+    <!-- Sub-footer copyright (extra bottom padding prevents overlap with floating AI Chat button) -->
     <div class="border-t border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 pb-20 sm:pb-12 flex flex-col sm:flex-row justify-between gap-2 text-xs text-slate-500">
         <span>© 2026 Visit Kaptai AI. Web Development Project.</span>
         <span>Built with HTML, Tailwind CSS &amp; n8n</span>
       </div>
@@ -493,7 +527,8 @@
   </div>
 
   <!-- ================= CHAT WIDGET (FIXED, CIRCLE) ================= -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+  <!-- Positioned at bottom-12 so it stays clear of footer text -->
+  <div class="fixed bottom-12 right-6 z-50 flex flex-col items-end gap-4">
 
     <!-- Chat Window (hidden by default, activate later via JS) -->
     <div id="chatBox" class="hidden w-[22rem] sm:w-[26rem] h-[32rem] max-h-[75vh] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
