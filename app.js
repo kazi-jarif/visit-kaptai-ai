@@ -238,7 +238,7 @@ function renderPlaces() {
         <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" onerror="this.style.display='none'" />
       </div>
       <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-bold text-lg text-slate-900">${place.name}</h3>
+        <h3 class="font-semibold text-lg text-slate-900">${place.name}</h3>
         <p class="mt-2 text-sm text-slate-600">
           <span class="place-description">${place.short}</span>
           <span class="see-more-toggle cursor-pointer text-emerald-700 font-semibold hover:underline">See more</span>
