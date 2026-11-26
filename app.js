@@ -676,9 +676,80 @@ function setupChatbox() {
   const chatInput = document.getElementById("chatInput");
   const chatForm = document.getElementById("chatForm");
   const chatMessages = document.getElementById("chatMessages");
-  const sendButton = chatForm ? chatForm.querySelector("button") : null;
+  const sendButton = chatForm ? chatForm.querySelector('button[type="submit"]') : null;
+
+  // Photo upload elements
+  const chatImageInput = document.getElementById("chatImageInput");
+  const chatImageBtn = document.getElementById("chatImageBtn");
+  const chatImagePreviewBox = document.getElementById("chatImagePreviewBox");
+  const chatImagePreview = document.getElementById("chatImagePreview");
+  const chatImageRemoveBtn = document.getElementById("chatImageRemoveBtn");
+
+  // Stores the currently attached resized photo (null when none)
+  let pendingImage = null;
 
   if (!chatBox) return;
+
+  /**
+   * Shrinks large phone photos to max 800px width (JPEG quality 0.8)
+   * using FileReader + <canvas> so uploads are fast and lightweight.
+   */
+  function resizeImageToBase64(file, maxWidth = 800) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const scale = img.width > maxWidth ? maxWidth / img.width : 1;
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+          const base64 = dataUrl.replace(/^data:image\/jpeg;base64,/, "");
+          resolve({ dataUrl, base64, mimeType: "image/jpeg" });
+        };
+        img.onerror = reject;
+        img.src = event.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Open file picker when camera button is clicked
+  if (chatImageBtn && chatImageInput) {
+    chatImageBtn.addEventListener("click", () => chatImageInput.click());
+
+    chatImageInput.addEventListener("change", async () => {
+      const file = chatImageInput.files[0];
+      if (!file) return;
+
+      try {
+        pendingImage = await resizeImageToBase64(file, 800);
+        if (chatImagePreview) chatImagePreview.src = pendingImage.dataUrl;
+        if (chatImagePreviewBox) chatImagePreviewBox.classList.remove("hidden");
+      } catch (err) {
+        console.error("Image resize error:", err);
+        pendingImage = null;
+      }
+    });
+  }
+
+  // Clear attached photo when '×' remove button is clicked
+  function clearPendingImage() {
+    pendingImage = null;
+    if (chatImageInput) chatImageInput.value = "";
+    if (chatImagePreview) chatImagePreview.src = "";
+    if (chatImagePreviewBox) chatImagePreviewBox.classList.add("hidden");
+  }
+
+  if (chatImageRemoveBtn) {
+    chatImageRemoveBtn.addEventListener("click", clearPendingImage);
+  }
 
   // Toggle chat with floating bottom-right button
   if (chatToggle) {
@@ -708,64 +779,89 @@ function setupChatbox() {
     });
   }
 
-  // Helper to append a chat bubble safely (uses whitespace-pre-line for bullet points & line breaks)
-  function appendChatMessage(text, sender) {
+  // Helper to append a chat bubble safely (supports optional image thumbnail + whitespace-pre-line)
+  function appendChatMessage(text, sender, imageUrl = "") {
     if (!chatMessages) return null;
 
     const bubble = document.createElement("div");
     bubble.className = sender === "user"
       ? "bg-emerald-600 text-white rounded-xl px-3 py-2 max-w-[85%] ml-auto text-sm whitespace-pre-line"
       : "bg-white border border-slate-200 rounded-xl px-3 py-2 max-w-[85%] text-sm text-slate-800 whitespace-pre-line";
-    bubble.textContent = text; // Safe text assignment
+
+    if (imageUrl) {
+      const imgEl = document.createElement("img");
+      imgEl.src = imageUrl;
+      imgEl.alt = "Uploaded Kaptai photo";
+      imgEl.className = "w-36 h-28 object-cover rounded-lg mb-1.5 border border-white/25";
+      bubble.appendChild(imgEl);
+    }
+
+    if (text) {
+      const textSpan = document.createElement("span");
+      textSpan.textContent = text; // Safe text assignment
+      bubble.appendChild(textSpan);
+    }
 
     chatMessages.appendChild(bubble);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     return bubble;
   }
 
-  // Async submit handler connected to live n8n AI webhook
+  // Async submit handler connected to live n8n AI webhook (supports text + optional photo)
   if (chatForm && chatInput) {
     chatForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const message = chatInput.value.trim();
-      if (!message) return;
+      const image = pendingImage;
 
-      // 1. Render user message bubble & clear input field
-      appendChatMessage(message, "user");
+      // Require at least text OR a photo
+      if (!message && !image) return;
+
+      // 1. Render user message bubble (with thumbnail if photo attached) & clear inputs
+      appendChatMessage(message, "user", image ? image.dataUrl : "");
       chatInput.value = "";
+      clearPendingImage();
 
-      // 2. Render temporary "Typing..." bot bubble and disable send button
-      const typingBubble = appendChatMessage("Typing...", "bot");
+      // 2. Render temporary bot status bubble and disable send button
+      const statusText = image ? "Analyzing photo..." : "Typing...";
+      const typingBubble = appendChatMessage(statusText, "bot");
       if (sendButton) {
         sendButton.disabled = true;
         sendButton.classList.add("opacity-50", "cursor-not-allowed");
       }
 
+      // 3. Build payload (include imageBase64 & mimeType when a photo is attached)
+      const payload = {
+        message: message,
+        sessionId: sessionId
+      };
+      if (image) {
+        payload.imageBase64 = image.base64;
+        payload.mimeType = image.mimeType;
+      }
+
       try {
-        // 3. Send message & sessionId to live n8n webhook
+        // 4. Send message & sessionId (plus optional photo) to live n8n webhook
         const response = await fetch(N8N_WEBHOOK_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            message: message,
-            sessionId: sessionId
-          })
+          body: JSON.stringify(payload)
         });
 
         if (!response.ok) {
           throw new Error("HTTP error " + response.status);
         }
 
-        // 4. Parse JSON reply from n8n ({ "reply": "..." })
+        // 5. Parse JSON reply from n8n ({ "reply": "..." })
         const data = await response.json();
         typingBubble.textContent = data.reply || "Sorry, no reply received.";
       } catch (err) {
         console.error("AI Chat webhook error:", err);
         typingBubble.textContent = "Sorry, I couldn't connect to the AI guide right now. Please try again.";
       } finally {
-        // 5. Re-enable send button
+        // 6. Re-enable send button
         if (sendButton) {
           sendButton.disabled = false;
           sendButton.classList.remove("opacity-50", "cursor-not-allowed");
