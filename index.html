@@ -524,6 +524,27 @@
     </div>
   </div>
 
+  <!-- ================= AUDIO STORY POPUP MODAL (HIDDEN) ================= -->
+  <!-- Minimal centered audio player card for place audio stories -->
+  <div id="audioModal" class="hidden fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-sm w-full rounded-2xl bg-gradient-to-br from-emerald-950 to-slate-900 border border-emerald-400/30 shadow-2xl p-5 text-white">
+      <!-- Top bar with title & close button -->
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-base text-amber-300">🎧 Audio Story</h3>
+        <button id="audioClose" aria-label="Close" class="text-2xl leading-none text-slate-300 hover:text-white">&times;</button>
+      </div>
+
+      <!-- HTML5 Audio Player -->
+      <audio id="storyAudio" controls class="w-full mt-4"></audio>
+
+      <!-- Pause / Play toggle button -->
+      <button id="audioPlayPauseBtn" type="button"
+        class="btn-3d border-emerald-800 w-full mt-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-semibold">
+        Pause
+      </button>
+    </div>
+  </div>
+
   <!-- ================= CHAT WIDGET (FIXED, CIRCLE) ================= -->
   <!-- Positioned at bottom-12 so it stays clear of footer text -->
   <div class="fixed bottom-12 right-6 z-50 flex flex-col items-end gap-4">

@@ -21,55 +21,67 @@
  */
 const places = [
   {
+    id: 1,
     name: "Kaptai Lake & Kayak Club",
     short: "Crystal emerald lake water surrounded by lush hills, famous for morning kayaking and sunrise boat rides.",
     full: "Kaptai Lake is the largest man-made lake in Bangladesh. Early morning is the best time for kayaking and boat rides, when the water is calm and the hills are covered in mist. Kayak clubs offer hourly rentals and safety life jackets.",
     image: "image/places/Kaptai Lake & Kayak Club.jpg",
+    audio: "Audio/01_kaptai_lake_kayak_club_v2.wav",
     map: "Kaptai Lake Kayak Club",
     video: "Kaptai Lake Kayak Club",
     phone: "01890-837441"
   },
   {
+    id: 2,
     name: "Lake Paradise (Bangladesh Navy Picnic Spot)",
     short: "Scenic lakeside picnic spot managed by Bangladesh Navy with panoramic viewpoints and boat pier (carry ID).",
     full: "A pristine, secure lakeside attraction maintained by the Bangladesh Navy. Features tidy walking paths, hillside picnic cottages, breathtaking views of the water horizon, and dedicated boat boarding piers. Valid identification is required at the security gate.",
     image: "image/places/Lake Paradise (Bangladesh Navy Picnic Spot).webp",
+    audio: "Audio/02_lake_paradise_navy_camp.wav",
     map: "Lake Paradise Kaptai",
     video: "Lake Paradise Kaptai Navy",
     phone: "01769-772174"
   },
   {
+    id: 3,
     name: "Chitmaram Buddhist Temple",
     short: "Historic hilltop golden temple overlooking the Karnaphuli River with Marma heritage (dress modestly).",
     full: "A revered historic Buddhist temple set quietly atop a hill overlooking the winding Karnaphuli River. Renowned for traditional Marma indigenous culture, Buddhist relics, and tranquil meditation surroundings. Visitors must dress modestly and remove shoes upon entering sacred grounds.",
     image: "image/places/Chitmaram Buddhist Temple.jpg",
+    audio: "Audio/03_chitmaram_buddhist_temple.wav",
     map: "Chitmaram Buddhist Temple Kaptai",
     video: "Chitmaram Buddhist Temple Kaptai",
     phone: ""
   },
   {
+    id: 4,
     name: "Sita Pahar",
     short: "Famous scenic hill along the Karnaphuli River in Raikhali, known for lush trekking trails, Sita Ghat, and local heritage.",
     full: "Rising along the scenic riverbanks in Raikhali, Sita Pahar is steeped in folklore and natural grandeur. An ideal destination for adventure trekkers, featuring forested ridges, natural bamboo groves, and panoramic vistas of the winding Karnaphuli River.",
     image: "image/places/Sita Pahar.jpg",
+    audio: "Audio/04_sita_pahar.wav",
     map: "Sita Pahar Kaptai Raikhali",
     video: "Sita Pahar Kaptai",
     phone: ""
   },
   {
+    id: 5,
     name: "Karnaphuli Hydroelectric Dam (Kaptai Dam)",
     short: "Iconic hydroelectric dam that formed Kaptai Lake (photography restricted in guarded zones).",
     full: "Constructed across the Karnaphuli River in the early 1960s, this historic dam gave birth to Kaptai Lake. It remains Bangladesh's singular hydroelectric power station. Visitors can view the spillway and spill gates; note that security regulations prohibit photography within guarded defense zones.",
     image: "image/places/Karnaphuli Hydroelectric Dam (Kaptai Dam).jpg",
+    audio: "Audio/05_kaptai_dam.wav",
     map: "Kaptai Dam",
     video: "Kaptai Dam Hydroelectric",
     phone: ""
   },
   {
+    id: 6,
     name: "Panorama Zoom Restaurant & Lake View",
     short: "Popular hilltop lakeside dining spot famous for sunset views over Kaptai Lake.",
     full: "Perched high above the shoreline, Panorama Zoom Restaurant delivers a panoramic 180-degree view of Kaptai's tranquil waters and surrounding green hills. Best visited late in the afternoon to savor fresh indigenous delicacies while watching the sunset over the lake.",
     image: "image/places/Panorama Zoom Restaurant & Lake View.jpg",
+    audio: "Audio/06_panorama_zoom_restaurant.wav",
     map: "Panorama Zoom Restaurant Kaptai",
     video: "Panorama Zoom Restaurant Kaptai",
     phone: "01669-611387"
@@ -77,40 +89,48 @@ const places = [
 
   // Extra places revealed by clicking "See More Places"
   {
+    id: 7,
     name: "Shilchori & Nisarga Pod House",
     short: "Peaceful riverside area with misty hill views and Bangladesh's famous pod-style eco-resorts along the Karnaphuli River.",
     full: "Shilchori is famed for its innovative wooden pod-style eco-resorts nestled right along the pristine riverbanks. Visitors can relax amidst tranquil mist, cross local suspension bridges, and experience hillside eco-cottages away from city noise.",
     image: "image/places/Shilchori & Nisarga Pod House.jpg",
+    audio: "Audio/07_shilchori_nisarga_pod_house.wav",
     map: "Nisarga Pod House Shilchori Kaptai",
     video: "Nisarga Pod House Shilchori Kaptai",
     phone: "01818-441100",
     extra: true
   },
   {
+    id: 8,
     name: "Karnafuly Tea Garden (Boroichori / Wagga)",
     short: "Lush green tea estate near Boroichori along the Kaptai road, great for morning walks and photography.",
     full: "A verdant carpet of rolling tea bushes situated in the Boroichori and Wagga valley along the road to Kaptai. One of the oldest tea gardens in the Chittagong Hill Tracts, offering serene mornings, refreshing hill air, and scenic photographic spots.",
     image: "image/places/Karnafuly Tea Garden (Boroichori).jpg",
+    audio: "Audio/08_karnafuly_tea_garden.wav",
     map: "Karnafuly Tea Garden Boroichori Kaptai",
     video: "Karnafuly Tea Garden Kaptai",
     phone: "01717-122830",
     extra: true
   },
   {
+    id: 9,
     name: "Aviary and Eco Park (Rangunia–Kaptai Road)",
     short: "Scenic eco-park and bird sanctuary featuring cable car rides, lake views, and hill trails on the way to Kaptai.",
     full: "Located along the scenic highway between Rangunia and Kaptai, this expansive eco-park features an aerial cable car ride across lush ravines, a large botanical aviary with native and migratory birds, serene walking bridges, and hillside picnic areas.",
     image: "image/places/Aviary and Eco Park (Rangunia–Kaptai Road).jpg",
+    audio: "Audio/09_aviary_eco_park.wav",
     map: "Sheikh Russel Aviary and Eco Park Rangunia",
     video: "Sheikh Russel Aviary Eco Park Rangunia",
     phone: "01852-224252",
     extra: true
   },
   {
+    id: 10,
     name: "Paharika Picnic Spot & Restaurant",
     short: "Quiet lakeside picnic and hangout spot on the Chittagong–Kaptai Road surrounded by greenery.",
     full: "A quiet and family-friendly picnic spot along the Chittagong–Kaptai corridor surrounded by shade trees and water viewpoints. Perfect for day-trippers seeking a relaxed meal and group leisure in a clean green environment.",
     image: "image/places/Paharika Picnic Spot & Restaurant.jpg",
+    audio: "Audio/10_paharika_picnic_spot.wav",
     map: "Paharika Picnic Spot Kaptai",
     video: "Paharika Picnic Spot Kaptai",
     phone: "01723-350834",
@@ -256,6 +276,10 @@ function renderPlaces() {
                class="px-3 py-1.5 rounded-md bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 text-xs font-semibold transition">
               Video
             </a>
+            <button type="button"
+               class="audio-btn px-3 py-1.5 rounded-md bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 text-xs font-semibold inline-flex items-center gap-1 transition">
+              🎧 Audio Story
+            </button>
             ${place.phone ? `
             <a href="tel:${place.phone}" class="px-3 py-1.5 rounded-md bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-semibold inline-flex items-center gap-1 transition">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -283,6 +307,12 @@ function renderPlaces() {
     const routeButton = card.querySelector(".route-btn");
     routeButton.addEventListener("click", () => {
       openRouteModal(place.name);
+    });
+
+    // "Audio Story" button: opens minimal audio player popup
+    const audioButton = card.querySelector(".audio-btn");
+    audioButton.addEventListener("click", () => {
+      openAudioModal(place.audio);
     });
 
     placesGrid.appendChild(card);
@@ -413,6 +443,79 @@ function setupRouteModalEvents() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !routeModal.classList.contains("hidden")) {
       closeRouteModal();
+    }
+  });
+}
+
+
+// ==========================================================================
+// 4B. MINIMAL AUDIO STORY POPUP MODAL
+// ==========================================================================
+
+const audioModal = document.getElementById("audioModal");
+const storyAudio = document.getElementById("storyAudio");
+const audioClose = document.getElementById("audioClose");
+const audioPlayPauseBtn = document.getElementById("audioPlayPauseBtn");
+
+/**
+ * Opens the minimal audio player popup and plays the selected audio file.
+ */
+function openAudioModal(audioSrc) {
+  if (!audioModal || !storyAudio) return;
+
+  storyAudio.src = audioSrc;
+  audioModal.classList.remove("hidden");
+  storyAudio.play().catch(() => {
+    if (audioPlayPauseBtn) audioPlayPauseBtn.textContent = "Play";
+  });
+  if (audioPlayPauseBtn) audioPlayPauseBtn.textContent = "Pause";
+}
+
+/**
+ * Pauses & resets the audio player, then hides the popup.
+ */
+function closeAudioModal() {
+  if (!audioModal || !storyAudio) return;
+
+  storyAudio.pause();
+  storyAudio.currentTime = 0;
+  audioModal.classList.add("hidden");
+}
+
+function setupAudioModalEvents() {
+  if (!audioModal || !storyAudio) return;
+
+  // Toggle Play / Pause button
+  if (audioPlayPauseBtn) {
+    audioPlayPauseBtn.addEventListener("click", () => {
+      if (storyAudio.paused) {
+        storyAudio.play();
+        audioPlayPauseBtn.textContent = "Pause";
+      } else {
+        storyAudio.pause();
+        audioPlayPauseBtn.textContent = "Play";
+      }
+    });
+  }
+
+  // Keep button label synced with native audio controls
+  storyAudio.addEventListener("play", () => {
+    if (audioPlayPauseBtn) audioPlayPauseBtn.textContent = "Pause";
+  });
+  storyAudio.addEventListener("pause", () => {
+    if (audioPlayPauseBtn) audioPlayPauseBtn.textContent = "Play";
+  });
+
+  // Close on '×' button, backdrop click, or Escape key
+  if (audioClose) {
+    audioClose.addEventListener("click", closeAudioModal);
+  }
+  audioModal.addEventListener("click", (event) => {
+    if (event.target === audioModal) closeAudioModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !audioModal.classList.contains("hidden")) {
+      closeAudioModal();
     }
   });
 }
@@ -804,8 +907,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSeeMorePlaces();
   setupPlacesSearch();
 
-  // 3. Setup route modal interactions
+  // 3. Setup route modal & audio modal interactions
   setupRouteModalEvents();
+  setupAudioModalEvents();
 
   // 4. Setup traveler reviews and star rating picker
   renderStarPicker();
