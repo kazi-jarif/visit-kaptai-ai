@@ -525,8 +525,12 @@ function setupAudioModalEvents() {
 // 5. FEATURE 4: TRAVELER REVIEWS & 1-5 STAR RATING PICKER
 // ==========================================================================
 
-// Temporary in-memory reviews array initialized with 2 sample reviews
-const reviewsData = [
+// Live Supabase (PostgreSQL) REST API credentials for Traveler Reviews
+const SUPABASE_URL = "https://ccihdunusgkmewfxedzh.supabase.co";
+const SUPABASE_KEY = "sb_publishable_AmIEENn73nU06Zw4kelldg_CoGRRA8m";
+
+// Reviews array initialized with 2 fallback sample reviews (updated from Supabase on load)
+let reviewsData = [
   {
     name: "Farhan Sadik",
     rating: 5,
@@ -622,16 +626,45 @@ function renderStarPicker() {
 }
 
 /**
- * Handles review form submission.
+ * Fetches saved traveler reviews from Supabase PostgreSQL via REST API.
+ */
+async function loadReviewsFromDatabase() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*&order=created_at.desc`, {
+      method: "GET",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Content-Type": "application/json"
+      }
+    });
+    if (!res.ok) throw new Error("Failed to fetch reviews");
+
+    const rows = await res.json();
+    if (Array.isArray(rows) && rows.length > 0) {
+      reviewsData = rows.map((r) => ({
+        name: r.name,
+        rating: r.rating,
+        text: r.comment
+      }));
+      renderReviewsList();
+    }
+  } catch (err) {
+    console.warn("Could not load Supabase reviews; showing fallback reviews:", err);
+  }
+}
+
+/**
+ * Handles review form submission and saves directly to Supabase PostgreSQL.
  */
 function setupReviewForm() {
   const reviewForm = document.getElementById("reviewForm");
   const revName = document.getElementById("revName");
   const revComment = document.getElementById("revComment");
+  const submitBtn = reviewForm ? reviewForm.querySelector('button[type="submit"]') : null;
 
   if (!reviewForm) return;
 
-  reviewForm.addEventListener("submit", (e) => {
+  reviewForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nameValue = revName ? revName.value.trim() : "";
@@ -642,18 +675,54 @@ function setupReviewForm() {
       return;
     }
 
-    // Add new review to the beginning of the list
-    reviewsData.unshift({
-      name: nameValue,
-      rating: currentRating,
-      text: commentValue
-    });
+    // Disable submit button while saving
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Saving...";
+    }
 
-    // Reset inputs
-    reviewForm.reset();
-    currentRating = 5;
-    renderStarPicker();
-    renderReviewsList();
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=representation"
+        },
+        body: JSON.stringify({
+          name: nameValue,
+          rating: currentRating,
+          comment: commentValue
+        })
+      });
+
+      if (!res.ok) throw new Error("HTTP error " + res.status);
+
+      const rows = await res.json();
+      const saved = Array.isArray(rows) && rows[0] ? rows[0] : {
+        name: nameValue,
+        rating: currentRating,
+        comment: commentValue
+      };
+
+      reviewsData.unshift({
+        name: saved.name,
+        rating: saved.rating,
+        text: saved.comment
+      });
+      reviewForm.reset();
+      currentRating = 5;
+      renderStarPicker();
+      renderReviewsList();
+    } catch (err) {
+      console.error("Save review error:", err);
+      alert("Could not save review right now. Please try again.");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Review";
+      }
+    }
   });
 }
 
@@ -1007,10 +1076,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupRouteModalEvents();
   setupAudioModalEvents();
 
-  // 4. Setup traveler reviews and star rating picker
+  // 4. Setup traveler reviews and load saved reviews from cloud
   renderStarPicker();
   renderReviewsList();
   setupReviewForm();
+  loadReviewsFromDatabase();
 
   // 5. Setup AI chat widget toggling
   setupChatbox();

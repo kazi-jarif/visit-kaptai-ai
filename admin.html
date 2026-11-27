@@ -133,8 +133,8 @@
 
       <!-- 3 Summary Stat Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
-        
-        <!-- Stat Card 1: Total Bookings -->
+
+        <!-- Stat Card 1: Total Guide Bookings -->
         <div class="bg-white rounded-2xl border border-emerald-100 shadow-sm p-5 flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -142,25 +142,25 @@
             </svg>
           </div>
           <div>
-            <p class="text-xs font-semibold text-slate-500 tracking-wider uppercase">Total Bookings</p>
+            <p class="text-xs font-semibold text-slate-500 tracking-wider uppercase">Total Guide Bookings</p>
             <p id="statTotalBookings" class="text-2xl font-extrabold text-slate-900 mt-0.5">0</p>
           </div>
         </div>
 
-        <!-- Stat Card 2: Latest Booking Date/Name -->
+        <!-- Stat Card 2: Total Traveler Reviews -->
         <div class="bg-white rounded-2xl border border-emerald-100 shadow-sm p-5 flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-700">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
             </svg>
           </div>
-          <div class="overflow-hidden">
-            <p class="text-xs font-semibold text-slate-500 tracking-wider uppercase">Latest Booking</p>
-            <p id="statLatestBooking" class="text-sm font-bold text-slate-900 truncate mt-0.5">None yet</p>
+          <div>
+            <p class="text-xs font-semibold text-slate-500 tracking-wider uppercase">Total Traveler Reviews</p>
+            <p id="statTotalReviews" class="text-2xl font-extrabold text-slate-900 mt-0.5">0</p>
           </div>
         </div>
 
-        <!-- Stat Card 3: Data Source Status -->
+        <!-- Stat Card 3: Database Status -->
         <div class="bg-white rounded-2xl border border-emerald-100 shadow-sm p-5 flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -168,58 +168,96 @@
             </svg>
           </div>
           <div>
-            <p class="text-xs font-semibold text-slate-500 tracking-wider uppercase">Data Source</p>
+            <p class="text-xs font-semibold text-slate-500 tracking-wider uppercase">Database</p>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mt-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-              Live: Google Sheets via n8n
+              Live: Supabase PostgreSQL
             </span>
           </div>
         </div>
 
       </div>
 
-      <!-- Live Bookings Section (Search Bar + Table) -->
+      <!-- 2 Clean Dashboard Tabs -->
+      <div class="flex items-center gap-2 mb-5">
+        <button id="tabBookingsBtn" type="button"
+          class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs sm:text-sm font-semibold shadow-sm transition">
+          Guide Bookings
+        </button>
+        <button id="tabReviewsBtn" type="button"
+          class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs sm:text-sm font-semibold shadow-sm transition">
+          Traveler Reviews
+        </button>
+      </div>
+
+      <!-- Live Data Table Card (Search Bar + Active Tab Table) -->
       <div class="bg-white rounded-2xl border border-emerald-100 shadow-sm overflow-hidden flex flex-col">
-        
+
         <!-- Table Toolbar: Title & Live Filter Input -->
         <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gradient-to-r from-emerald-50/40 to-transparent">
           <div>
-            <h2 class="text-lg font-bold text-slate-900">Guide Bookings Log</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Real-time bookings synchronized with Google Sheets</p>
+            <h2 id="tableTitle" class="text-lg font-bold text-slate-900">Guide Bookings Log</h2>
+            <p id="tableSubtitle" class="text-xs text-slate-500 mt-0.5">Real-time bookings from Supabase PostgreSQL</p>
           </div>
 
-          <!-- Live Search Filter Box -->
-          <div class="relative w-full sm:w-72">
-            <svg class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="7"/>
-              <path stroke-linecap="round" d="M21 21l-4.3-4.3"/>
-            </svg>
-            <input
-              id="searchInput"
-              type="text"
-              placeholder="Filter by name, phone, or place..."
-              class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white shadow-sm"
-            />
+          <!-- Search Filter & + Add Booking Button -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
+            <div class="relative w-full sm:w-72">
+              <svg class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7"/>
+                <path stroke-linecap="round" d="M21 21l-4.3-4.3"/>
+              </svg>
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Filter active table..."
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white shadow-sm"
+              />
+            </div>
+
+            <!-- Manual Booking Entry Button (shown only on Guide Bookings tab) -->
+            <button
+              id="openAddBookingBtn"
+              type="button"
+              class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold shadow-sm whitespace-nowrap transition"
+            >
+              + Add Booking
+            </button>
           </div>
         </div>
 
-        <!-- Table Container (Horizontal Scroll for Responsive View) -->
-        <div class="overflow-x-auto flex-1">
+        <!-- Tab 1: Guide Bookings Table -->
+        <div id="bookingsTableWrap" class="overflow-x-auto flex-1">
           <table class="w-full text-left text-xs border-collapse">
             <thead class="bg-slate-100/80 text-slate-700 uppercase font-bold tracking-wider border-b border-slate-200">
               <tr>
-                <th class="py-3 px-4 whitespace-nowrap">Booking Time</th>
+                <th class="py-3 px-4 whitespace-nowrap">Date</th>
                 <th class="py-3 px-4 whitespace-nowrap">Name</th>
                 <th class="py-3 px-4 whitespace-nowrap">Phone</th>
                 <th class="py-3 px-4 whitespace-nowrap">Travel Date</th>
                 <th class="py-3 px-4 whitespace-nowrap">Group Size</th>
                 <th class="py-3 px-4 whitespace-nowrap">Places</th>
-                <th class="py-3 px-4 min-w-[260px]">Call Summary</th>
+                <th class="py-3 px-4 min-w-[240px]">Call Summary</th>
+                <th class="py-3 px-4 whitespace-nowrap text-right">Action</th>
               </tr>
             </thead>
-            <tbody id="bookingsTableBody" class="divide-y divide-slate-100 text-slate-700">
-              <!-- Rows inserted dynamically by JavaScript -->
-            </tbody>
+            <tbody id="bookingsTableBody" class="divide-y divide-slate-100 text-slate-700"></tbody>
+          </table>
+        </div>
+
+        <!-- Tab 2: Traveler Reviews Table -->
+        <div id="reviewsTableWrap" class="hidden overflow-x-auto flex-1">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100/80 text-slate-700 uppercase font-bold tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-4 whitespace-nowrap">Date</th>
+                <th class="py-3 px-4 whitespace-nowrap">Name</th>
+                <th class="py-3 px-4 whitespace-nowrap">Rating</th>
+                <th class="py-3 px-4 min-w-[300px]">Comment</th>
+                <th class="py-3 px-4 whitespace-nowrap text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="reviewsTableBody" class="divide-y divide-slate-100 text-slate-700"></tbody>
           </table>
         </div>
 
@@ -229,15 +267,15 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          Loading live bookings from Google Sheets...
+          Loading data from Supabase PostgreSQL...
         </div>
 
         <div id="emptyState" class="hidden py-12 text-center text-slate-400 text-sm">
-          No bookings found.
+          No records found.
         </div>
 
         <div id="errorState" class="hidden py-12 text-center text-rose-600 text-sm">
-          Failed to load bookings from n8n. Please click Refresh to try again.
+          Failed to load data from Supabase. Please click Refresh to try again.
         </div>
 
       </div>
@@ -246,23 +284,92 @@
 
     <!-- Footer Copyright -->
     <footer class="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-400">
-      Visit Kaptai AI — Admin Dashboard • Synchronized via n8n &amp; Google Sheets
+      Visit Kaptai AI — Admin Dashboard • Connected to Supabase PostgreSQL
     </footer>
 
   </div>
 
   <!-- =========================================================================
-       3. VANILLA JAVASCRIPT LOGIC
+       ADD BOOKING POPUP MODAL (Hidden by default)
+       ========================================================================= -->
+  <div id="addBookingModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-emerald-100 shadow-2xl max-w-md w-full p-6">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="text-lg font-bold text-slate-900">+ Add Manual Booking</h3>
+        <button id="closeAddBookingBtn" type="button" class="text-2xl leading-none text-slate-400 hover:text-slate-700">&times;</button>
+      </div>
+
+      <form id="addBookingForm" class="mt-4 space-y-3 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Name *</label>
+          <input id="bookName" type="text" required placeholder="e.g. Rahim Uddin"
+            class="w-full px-3 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Phone *</label>
+          <input id="bookPhone" type="text" required placeholder="e.g. 01711-000000"
+            class="w-full px-3 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Travel Date</label>
+            <input id="bookDate" type="text" placeholder="e.g. 15 December 2026"
+              class="w-full px-3 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Group Size</label>
+            <input id="bookGroup" type="text" placeholder="e.g. 4"
+              class="w-full px-3 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Places</label>
+          <input id="bookPlaces" type="text" placeholder="e.g. Kaptai Lake, Lake Paradise"
+            class="w-full px-3 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Notes / Summary</label>
+          <textarea id="bookSummary" rows="2" placeholder="Manual booking by Admin"
+            class="w-full px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+          <button id="cancelAddBookingBtn" type="button"
+            class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold transition">
+            Cancel
+          </button>
+          <button id="saveBookingBtn" type="submit"
+            class="px-5 py-2 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold shadow-sm transition">
+            Save Booking
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       3. VANILLA JAVASCRIPT LOGIC (Supabase REST API)
        ========================================================================= -->
   <script>
-    // Live n8n webhook URL to retrieve Google Sheets bookings
-    const GET_BOOKINGS_URL = "https://n8n.hablu-programmer.com/webhook/kaptai-get-bookings";
+    // Supabase REST API Credentials (send ONLY apikey + Content-Type)
+    const SUPABASE_URL = "https://ccihdunusgkmewfxedzh.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_AmIEENn73nU06Zw4kelldg_CoGRRA8m";
+    const SUPABASE_HEADERS = {
+      "apikey": SUPABASE_KEY,
+      "Content-Type": "application/json"
+    };
 
     // Demo admin passcode
     const ADMIN_PASSCODE = "admin123";
 
-    // Global in-memory list of bookings
+    // In-memory state
     let allBookings = [];
+    let allReviews = [];
+    let activeTab = "bookings"; // "bookings" or "reviews"
 
     // DOM Elements
     const loginSection = document.getElementById("loginSection");
@@ -277,20 +384,27 @@
     const searchInput = document.getElementById("searchInput");
 
     const statTotalBookings = document.getElementById("statTotalBookings");
-    const statLatestBooking = document.getElementById("statLatestBooking");
+    const statTotalReviews = document.getElementById("statTotalReviews");
 
+    const tabBookingsBtn = document.getElementById("tabBookingsBtn");
+    const tabReviewsBtn = document.getElementById("tabReviewsBtn");
+    const tableTitle = document.getElementById("tableTitle");
+    const tableSubtitle = document.getElementById("tableSubtitle");
+
+    const bookingsTableWrap = document.getElementById("bookingsTableWrap");
+    const reviewsTableWrap = document.getElementById("reviewsTableWrap");
     const bookingsTableBody = document.getElementById("bookingsTableBody");
+    const reviewsTableBody = document.getElementById("reviewsTableBody");
+
     const loadingState = document.getElementById("loadingState");
     const emptyState = document.getElementById("emptyState");
     const errorState = document.getElementById("errorState");
 
-    /* ---------- Helper: Format booking timestamp nicely ---------- */
+    /* ---------- Helper: Format timestamp cleanly ---------- */
     function formatDateTime(rawDate) {
       if (!rawDate) return "-";
       const d = new Date(rawDate);
-      if (isNaN(d.getTime())) {
-        return String(rawDate); // If already custom formatted, return as-is
-      }
+      if (isNaN(d.getTime())) return String(rawDate);
       return d.toLocaleString("en-GB", {
         day: "2-digit",
         month: "short",
@@ -300,38 +414,40 @@
       });
     }
 
-    /* ---------- Render Table Rows Safely (prevents HTML injection) ---------- */
+    /* ---------- Helper: Format star rating ---------- */
+    function formatStars(n) {
+      const count = Math.max(0, Math.min(5, Number(n) || 0));
+      return "★".repeat(count) + "☆".repeat(5 - count);
+    }
+
+    /* ---------- Helper: Safe table cell creation ---------- */
+    function createCell(value, extraClass = "") {
+      const td = document.createElement("td");
+      td.className = "py-3.5 px-4 " + extraClass;
+      td.textContent = value || "-";
+      return td;
+    }
+
+    /* ---------- Render Guide Bookings Table ---------- */
     function renderBookingsTable(items) {
       bookingsTableBody.innerHTML = "";
-
-      if (!items || items.length === 0) {
-        emptyState.classList.remove("hidden");
-        return;
+      if (activeTab === "bookings") {
+        emptyState.classList.toggle("hidden", items && items.length > 0);
       }
-      emptyState.classList.add("hidden");
 
-      items.forEach((item) => {
+      if (!items || items.length === 0) return;
+
+      items.forEach((row) => {
         const tr = document.createElement("tr");
         tr.className = "hover:bg-slate-50/80 transition";
 
-        // Helper to create a cell with text content
-        const createCell = (value, extraClass = "") => {
-          const td = document.createElement("td");
-          td.className = "py-3.5 px-4 " + extraClass;
-          td.textContent = value || "-";
-          return td;
-        };
+        tr.appendChild(createCell(formatDateTime(row.created_at || row["Booking Time"]), "whitespace-nowrap font-medium text-slate-500"));
+        tr.appendChild(createCell(row.name || row["Name"], "whitespace-nowrap font-bold text-slate-900"));
 
-        // 1. Booking Time
-        tr.appendChild(createCell(formatDateTime(item["Booking Time"]), "whitespace-nowrap font-medium text-slate-500"));
-
-        // 2. Name
-        tr.appendChild(createCell(item["Name"], "whitespace-nowrap font-bold text-slate-900"));
-
-        // 3. Phone (render as clickable tel: link if available)
+        // Clickable Phone cell
         const phoneTd = document.createElement("td");
         phoneTd.className = "py-3.5 px-4 whitespace-nowrap";
-        const phoneVal = String(item["Phone"] || "").trim();
+        const phoneVal = String(row.phone || row["Phone"] || "").trim();
         if (phoneVal && phoneVal !== "-") {
           const a = document.createElement("a");
           a.href = "tel:" + phoneVal;
@@ -343,70 +459,122 @@
         }
         tr.appendChild(phoneTd);
 
-        // 4. Travel Date
-        tr.appendChild(createCell(item["Travel Date"], "whitespace-nowrap text-slate-700"));
+        tr.appendChild(createCell(row.travel_date || row["Travel Date"], "whitespace-nowrap text-slate-700"));
 
-        // 5. Group Size
+        // Group Size badge
         const groupTd = document.createElement("td");
         groupTd.className = "py-3.5 px-4 whitespace-nowrap";
-        const groupBadge = document.createElement("span");
-        groupBadge.className = "inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold";
-        groupBadge.textContent = item["Group Size"] || "-";
-        groupTd.appendChild(groupBadge);
+        const badge = document.createElement("span");
+        badge.className = "inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold";
+        badge.textContent = row.group_size || row["Group Size"] || "-";
+        groupTd.appendChild(badge);
         tr.appendChild(groupTd);
 
-        // 6. Places
-        tr.appendChild(createCell(item["Places"], "text-slate-800 font-medium"));
+        tr.appendChild(createCell(row.places || row["Places"], "text-slate-800 font-medium"));
+        tr.appendChild(createCell(row.call_summary || row["Call Summary"], "text-slate-600 leading-relaxed text-[11px]"));
 
-        // 7. Call Summary
-        tr.appendChild(createCell(item["Call Summary"], "text-slate-600 leading-relaxed text-[11px]"));
+        // Delete button cell
+        const actionTd = document.createElement("td");
+        actionTd.className = "py-3.5 px-4 whitespace-nowrap text-right";
+        const delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.textContent = "Delete";
+        delBtn.className = "px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white border border-rose-200 text-[11px] font-semibold transition";
+        delBtn.addEventListener("click", () => deleteRecord("guide_bookings", row.id));
+        actionTd.appendChild(delBtn);
+        tr.appendChild(actionTd);
 
         bookingsTableBody.appendChild(tr);
       });
     }
 
-    /* ---------- Update Summary Stats Cards ---------- */
-    function updateStats(items) {
-      statTotalBookings.textContent = items.length;
+    /* ---------- Render Traveler Reviews Table ---------- */
+    function renderReviewsTable(items) {
+      reviewsTableBody.innerHTML = "";
+      if (activeTab === "reviews") {
+        emptyState.classList.toggle("hidden", items && items.length > 0);
+      }
 
-      if (items.length > 0) {
-        const latest = items[0];
-        const latestName = latest["Name"] || "Guest";
-        const latestDate = latest["Travel Date"] || latest["Booking Time"] || "";
-        statLatestBooking.textContent = `${latestName} (${latestDate})`;
-      } else {
-        statLatestBooking.textContent = "None yet";
+      if (!items || items.length === 0) return;
+
+      items.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-slate-50/80 transition";
+
+        tr.appendChild(createCell(formatDateTime(row.created_at), "whitespace-nowrap font-medium text-slate-500"));
+        tr.appendChild(createCell(row.name, "whitespace-nowrap font-bold text-slate-900"));
+        tr.appendChild(createCell(formatStars(row.rating), "whitespace-nowrap text-amber-500 text-sm"));
+        tr.appendChild(createCell(row.comment, "text-slate-600 leading-relaxed"));
+
+        // Delete button cell
+        const actionTd = document.createElement("td");
+        actionTd.className = "py-3.5 px-4 whitespace-nowrap text-right";
+        const delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.textContent = "Delete";
+        delBtn.className = "px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white border border-rose-200 text-[11px] font-semibold transition";
+        delBtn.addEventListener("click", () => deleteRecord("reviews", row.id));
+        actionTd.appendChild(delBtn);
+        tr.appendChild(actionTd);
+
+        reviewsTableBody.appendChild(tr);
+      });
+    }
+
+    /* ---------- Delete Record from Supabase ---------- */
+    async function deleteRecord(tableName, id) {
+      if (!id) return;
+      if (!confirm("Are you sure you want to delete this record?")) return;
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${tableName}?id=eq.${id}`, {
+          method: "DELETE",
+          headers: SUPABASE_HEADERS
+        });
+        if (!res.ok) throw new Error("Delete failed");
+
+        // Reload both tables cleanly
+        await fetchAllData();
+      } catch (err) {
+        console.error("Delete error:", err);
+        alert("Could not delete record. Please check Supabase RLS policies.");
       }
     }
 
-    /* ---------- Fetch Bookings from Live n8n Webhook ---------- */
-    async function fetchBookings() {
+    /* ---------- Fetch Both Tables from Supabase ---------- */
+    async function fetchAllData() {
       loadingState.classList.remove("hidden");
       emptyState.classList.add("hidden");
       errorState.classList.add("hidden");
-      bookingsTableBody.innerHTML = "";
 
       if (refreshIcon) refreshIcon.classList.add("animate-spin");
 
       try {
-        const response = await fetch(GET_BOOKINGS_URL, {
-          method: "GET",
-          headers: { "Accept": "application/json" }
-        });
+        const [bookingsRes, reviewsRes] = await Promise.all([
+          fetch(`${SUPABASE_URL}/rest/v1/guide_bookings?select=*&order=created_at.desc`, {
+            method: "GET",
+            headers: SUPABASE_HEADERS
+          }),
+          fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*&order=created_at.desc`, {
+            method: "GET",
+            headers: SUPABASE_HEADERS
+          })
+        ]);
 
-        if (!response.ok) {
-          throw new Error("HTTP Error " + response.status);
+        if (!bookingsRes.ok || !reviewsRes.ok) {
+          throw new Error("Supabase fetch error");
         }
 
-        const data = await response.json();
-        // Extract array from { "bookings": [...] } or fallback to direct array
-        allBookings = Array.isArray(data) ? data : (data.bookings || []);
+        allBookings = await bookingsRes.json();
+        allReviews = await reviewsRes.json();
+
+        statTotalBookings.textContent = allBookings.length;
+        statTotalReviews.textContent = allReviews.length;
 
         loadingState.classList.add("hidden");
-        updateStats(allBookings);
-        renderBookingsTable(allBookings);
+        applySearchAndRender();
       } catch (err) {
-        console.error("Failed to fetch bookings:", err);
+        console.error("Failed to fetch Supabase data:", err);
         loadingState.classList.add("hidden");
         errorState.classList.remove("hidden");
       } finally {
@@ -414,25 +582,64 @@
       }
     }
 
-    /* ---------- Live Table Filtering by Name, Phone, or Places ---------- */
-    if (searchInput) {
-      searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase().trim();
+    /* ---------- Filter Active Table Based on Search Input ---------- */
+    function applySearchAndRender() {
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
-        if (!query) {
-          renderBookingsTable(allBookings);
-          return;
-        }
-
-        const filtered = allBookings.filter((b) => {
-          const name = String(b["Name"] || "").toLowerCase();
-          const phone = String(b["Phone"] || "").toLowerCase();
-          const places = String(b["Places"] || "").toLowerCase();
-          return name.includes(query) || phone.includes(query) || places.includes(query);
-        });
-
+      if (activeTab === "bookings") {
+        const filtered = !query
+          ? allBookings
+          : allBookings.filter((b) => {
+              const name = String(b.name || b["Name"] || "").toLowerCase();
+              const phone = String(b.phone || b["Phone"] || "").toLowerCase();
+              const places = String(b.places || b["Places"] || "").toLowerCase();
+              return name.includes(query) || phone.includes(query) || places.includes(query);
+            });
         renderBookingsTable(filtered);
-      });
+      } else {
+        const filtered = !query
+          ? allReviews
+          : allReviews.filter((r) => {
+              const name = String(r.name || "").toLowerCase();
+              const comment = String(r.comment || "").toLowerCase();
+              return name.includes(query) || comment.includes(query);
+            });
+        renderReviewsTable(filtered);
+      }
+    }
+
+    /* ---------- Switch Between Tabs ---------- */
+    function switchTab(tab) {
+      activeTab = tab;
+      if (searchInput) searchInput.value = "";
+
+      if (tab === "bookings") {
+        tabBookingsBtn.className = "px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs sm:text-sm font-semibold shadow-sm transition";
+        tabReviewsBtn.className = "px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs sm:text-sm font-semibold shadow-sm transition";
+        tableTitle.textContent = "Guide Bookings Log";
+        tableSubtitle.textContent = "Real-time bookings from Supabase PostgreSQL";
+        bookingsTableWrap.classList.remove("hidden");
+        reviewsTableWrap.classList.add("hidden");
+        if (openAddBookingBtn) openAddBookingBtn.classList.remove("hidden");
+      } else {
+        tabReviewsBtn.className = "px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs sm:text-sm font-semibold shadow-sm transition";
+        tabBookingsBtn.className = "px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs sm:text-sm font-semibold shadow-sm transition";
+        tableTitle.textContent = "Traveler Reviews Log";
+        tableSubtitle.textContent = "Submitted traveler reviews stored in Supabase PostgreSQL";
+        reviewsTableWrap.classList.remove("hidden");
+        bookingsTableWrap.classList.add("hidden");
+        if (openAddBookingBtn) openAddBookingBtn.classList.add("hidden");
+      }
+
+      applySearchAndRender();
+    }
+
+    tabBookingsBtn.addEventListener("click", () => switchTab("bookings"));
+    tabReviewsBtn.addEventListener("click", () => switchTab("reviews"));
+
+    /* ---------- Live Search Listener ---------- */
+    if (searchInput) {
+      searchInput.addEventListener("input", applySearchAndRender);
     }
 
     /* ---------- Login Form Handler ---------- */
@@ -441,15 +648,11 @@
       const entered = adminPasscode.value.trim();
 
       if (entered === ADMIN_PASSCODE) {
-        // Correct passcode: show dashboard, hide login
         loginError.classList.add("hidden");
         loginSection.classList.add("hidden");
         dashboardSection.classList.remove("hidden");
-
-        // Fetch live bookings
-        fetchBookings();
+        fetchAllData();
       } else {
-        // Wrong passcode: show error
         loginError.classList.remove("hidden");
         adminPasscode.focus();
         adminPasscode.select();
@@ -460,7 +663,7 @@
     if (refreshBtn) {
       refreshBtn.addEventListener("click", () => {
         if (searchInput) searchInput.value = "";
-        fetchBookings();
+        fetchAllData();
       });
     }
 
@@ -470,6 +673,77 @@
         adminPasscode.value = "";
         dashboardSection.classList.add("hidden");
         loginSection.classList.remove("hidden");
+      });
+    }
+
+    /* ---------- + Add Manual Booking Modal Logic ---------- */
+    const openAddBookingBtn = document.getElementById("openAddBookingBtn");
+    const addBookingModal = document.getElementById("addBookingModal");
+    const closeAddBookingBtn = document.getElementById("closeAddBookingBtn");
+    const cancelAddBookingBtn = document.getElementById("cancelAddBookingBtn");
+    const addBookingForm = document.getElementById("addBookingForm");
+    const saveBookingBtn = document.getElementById("saveBookingBtn");
+
+    function closeBookingModal() {
+      if (addBookingModal) addBookingModal.classList.add("hidden");
+    }
+
+    if (openAddBookingBtn && addBookingModal) {
+      openAddBookingBtn.addEventListener("click", () => {
+        addBookingModal.classList.remove("hidden");
+      });
+    }
+    if (closeAddBookingBtn) closeAddBookingBtn.addEventListener("click", closeBookingModal);
+    if (cancelAddBookingBtn) cancelAddBookingBtn.addEventListener("click", closeBookingModal);
+    if (addBookingModal) {
+      addBookingModal.addEventListener("click", (e) => {
+        if (e.target === addBookingModal) closeBookingModal();
+      });
+    }
+
+    if (addBookingForm) {
+      addBookingForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const payload = {
+          name: document.getElementById("bookName").value.trim(),
+          phone: document.getElementById("bookPhone").value.trim(),
+          travel_date: document.getElementById("bookDate").value.trim() || "-",
+          group_size: document.getElementById("bookGroup").value.trim() || "-",
+          places: document.getElementById("bookPlaces").value.trim() || "-",
+          call_summary: document.getElementById("bookSummary").value.trim() || "Manual booking by Admin"
+        };
+
+        if (saveBookingBtn) {
+          saveBookingBtn.disabled = true;
+          saveBookingBtn.textContent = "Saving...";
+        }
+
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/guide_bookings`, {
+            method: "POST",
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Content-Type": "application/json",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) throw new Error("Failed to save booking");
+
+          addBookingForm.reset();
+          closeBookingModal();
+          await fetchAllData();
+        } catch (err) {
+          console.error("Add booking error:", err);
+          alert("Could not save booking. Please try again.");
+        } finally {
+          if (saveBookingBtn) {
+            saveBookingBtn.disabled = false;
+            saveBookingBtn.textContent = "Save Booking";
+          }
+        }
       });
     }
   </script>

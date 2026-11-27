@@ -49,6 +49,12 @@
       transition: transform 0.15s ease;
     }
     .btn-3d:active { transform: translateY(2px); }
+
+    /* Pure-HTML <details> toggle for Indigenous Communities "See more / See less" */
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] .more-label { display: none; }
+    details:not([open]) .less-label { display: none; }
   </style>
 </head>
 
@@ -69,6 +75,7 @@
       <div class="hidden md:flex items-center gap-10 text-sm font-semibold text-white">
         <a href="#home" class="hover:text-emerald-400 transition">Home</a>
         <a href="#places" class="hover:text-emerald-400 transition">Places</a>
+        <a href="#culture" class="hover:text-emerald-400 transition">Culture</a>
         <a href="#rules" class="hover:text-emerald-400 transition">Rules</a>
       </div>
 
@@ -319,6 +326,207 @@
         See More Places
       </button>
     </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION A: INDIGENOUS COMMUNITIES ================= -->
+  <!-- Editorial 2-column layout: clean list on left, staggered 2x2 photo grid on right -->
+  <section id="culture" class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-12 lg:grid-cols-2 items-center">
+
+      <!-- Left Column: Single clean editorial list -->
+      <div>
+        <p class="text-xs font-bold tracking-widest text-emerald-700">CULTURAL HERITAGE</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mt-1 text-slate-900">
+          Know About Kaptai's <span class="text-emerald-700 italic">Indigenous</span> Communities
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-slate-600">
+          Discover the living traditions, vibrant festivals, and warm hospitality of Kaptai's hill communities.
+        </p>
+
+        <div class="mt-8 divide-y divide-emerald-100 border-l-2 border-emerald-500 pl-5 space-y-5">
+
+          <!-- 1. Marma -->
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <h3 class="font-bold text-base text-slate-900">Marma</h3>
+            </div>
+            <p class="mt-1 text-sm text-slate-600">
+              One of the largest communities in Kaptai, deeply rooted around Chitmaram Temple and riverfront villages.
+            </p>
+            <details class="mt-1.5">
+              <summary class="cursor-pointer text-xs font-semibold text-emerald-700 hover:underline select-none">
+                <span class="more-label">See more →</span>
+                <span class="less-label">See less ↑</span>
+              </summary>
+              <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed bg-emerald-50/70 rounded-xl p-3 border border-emerald-100">
+                They celebrate <strong>Sangrai</strong> every April with joyful water-splashing rituals, traditional dances, and temple prayers along the Karnaphuli River. Visitors can also taste authentic Marma dishes like Nappi and bamboo-cooked delicacies in local hill markets.
+              </p>
+            </details>
+          </div>
+
+          <!-- 2. Chakma -->
+          <div class="pt-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+              <h3 class="font-bold text-base text-slate-900">Chakma</h3>
+            </div>
+            <p class="mt-1 text-sm text-slate-600">
+              Renowned for handwoven Pinon-Hadi textiles, bamboo crafts, and serene hilltop communities around Kaptai Lake.
+            </p>
+            <details class="mt-1.5">
+              <summary class="cursor-pointer text-xs font-semibold text-emerald-700 hover:underline select-none">
+                <span class="more-label">See more →</span>
+                <span class="less-label">See less ↑</span>
+              </summary>
+              <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed bg-emerald-50/70 rounded-xl p-3 border border-emerald-100">
+                Their biggest festival, <strong>Biju</strong>, spans three days of floating flowers on the lake at dawn (Phul Biju) and sharing traditional Pajan curry with neighbors. Traditional back-strap loom weaving remains a proud art form passed down through generations.
+              </p>
+            </details>
+          </div>
+
+          <!-- 3. Tanchangya -->
+          <div class="pt-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <h3 class="font-bold text-base text-slate-900">Tanchangya</h3>
+            </div>
+            <p class="mt-1 text-sm text-slate-600">
+              Known for vibrant silver ornaments, colorful woven attire, and peaceful villages nestled in Kaptai's green valleys.
+            </p>
+            <details class="mt-1.5">
+              <summary class="cursor-pointer text-xs font-semibold text-emerald-700 hover:underline select-none">
+                <span class="more-label">See more →</span>
+                <span class="less-label">See less ↑</span>
+              </summary>
+              <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed bg-emerald-50/70 rounded-xl p-3 border border-emerald-100">
+                During <strong>Bishu</strong>, Tanchangya families welcome guests with folk songs, bamboo games, and community feasts celebrating the Bengali New Year. Their distinct handwoven fabrics feature intricate geometric motifs inspired by surrounding hills and streams.
+              </p>
+            </details>
+          </div>
+
+          <!-- 4. Tripura -->
+          <div class="pt-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-600"></span>
+              <h3 class="font-bold text-base text-slate-900">Tripura</h3>
+            </div>
+            <p class="mt-1 text-sm text-slate-600">
+              Celebrated for rhythmic Garia folk dances, handwoven Risa-Rignai attire, and rich hillside cultural heritage.
+            </p>
+            <details class="mt-1.5">
+              <summary class="cursor-pointer text-xs font-semibold text-emerald-700 hover:underline select-none">
+                <span class="more-label">See more →</span>
+                <span class="less-label">See less ↑</span>
+              </summary>
+              <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed bg-emerald-50/70 rounded-xl p-3 border border-emerald-100">
+                Their spring festival, <strong>Baisuk</strong>, fills the hills with traditional flute music, colorful dances, and warm community gatherings. Visitors exploring Kaptai's eco-trails often encounter their traditional bamboo homes and friendly local hospitality.
+              </p>
+            </details>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: 4-Part 2x2 Staggered Photo Grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <!-- 1. Marma -->
+        <div class="card-3d rounded-2xl h-48 sm:h-60 overflow-hidden relative bg-gradient-to-br from-emerald-800 to-teal-900 border border-emerald-100">
+          <img src="image/Indigenous Communities/marma.png" alt="Marma Community Sangrai Festival" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <span class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">
+            Marma / Sangrai
+          </span>
+        </div>
+
+        <!-- 2. Chakma (staggered down) -->
+        <div class="card-3d rounded-2xl h-48 sm:h-60 overflow-hidden relative sm:mt-6 bg-gradient-to-br from-teal-800 to-slate-900 border border-emerald-100">
+          <img src="image/Indigenous Communities/chakma.png" alt="Chakma Community Biju Festival" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <span class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">
+            Chakma / Biju
+          </span>
+        </div>
+
+        <!-- 3. Tanchangya (staggered up) -->
+        <div class="card-3d rounded-2xl h-48 sm:h-60 overflow-hidden relative sm:-mt-6 bg-gradient-to-br from-emerald-900 to-cyan-900 border border-emerald-100">
+          <img src="image/Indigenous Communities/tonchonga.png" alt="Tanchangya Community Bishu Festival" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <span class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">
+            Tanchangya / Bishu
+          </span>
+        </div>
+
+        <!-- 4. Tripura -->
+        <div class="card-3d rounded-2xl h-48 sm:h-60 overflow-hidden relative bg-gradient-to-br from-slate-800 to-emerald-950 border border-emerald-100">
+          <img src="image/Indigenous Communities/tripura.png" alt="Tripura Community Baisuk Festival" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <span class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">
+            Tripura / Baisuk
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION B: FAMOUS FISHES OF KAPTAI LAKE ================= -->
+  <!-- Soft tinted background with 4-column responsive 3D fish cards -->
+  <section id="fishes" class="bg-gradient-to-b from-emerald-50/60 to-white border-t border-emerald-100 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-10">
+      <p class="text-xs font-bold tracking-widest text-emerald-700">LOCAL TASTE &amp; FLAVORS</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold mt-1 text-slate-900">Famous Fishes of Kaptai Lake</h2>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- 1. Kachki -->
+      <div class="card-3d bg-white rounded-2xl overflow-hidden border border-emerald-100">
+        <div class="bg-gradient-to-br from-emerald-700 to-teal-800">
+          <img src="image/fishs/kaski mach.png" alt="Kachki Fish" class="w-full h-44 object-cover" onerror="this.style.display='none'" />
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-base text-slate-900">Kachki (কাচকি)</h3>
+          <p class="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Tiny silver lake fish famous for crispy golden fry and spicy lakeside vorta.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Chapila -->
+      <div class="card-3d bg-white rounded-2xl overflow-hidden border border-emerald-100">
+        <div class="bg-gradient-to-br from-emerald-700 to-teal-800">
+          <img src="image/fishs/chapali mach.png" alt="Chapila Fish" class="w-full h-44 object-cover" onerror="this.style.display='none'" />
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-base text-slate-900">Chapila (চাপিলা)</h3>
+          <p class="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Delicate, aromatic Kaptai Lake specialty loved for crispy fry and hill curries.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. Rui & Katla -->
+      <div class="card-3d bg-white rounded-2xl overflow-hidden border border-emerald-100">
+        <div class="bg-gradient-to-br from-emerald-700 to-teal-800">
+          <img src="image/fishs/rui -katla.png" alt="Rui and Katla Fish" class="w-full h-44 object-cover" onerror="this.style.display='none'" />
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-base text-slate-900">Rui &amp; Katla (রুই ও কাতলা)</h3>
+          <p class="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Large fresh lake fish celebrated for Bamboo Rui Kebab and rich traditional curry.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4. Ayer & Boal -->
+      <div class="card-3d bg-white rounded-2xl overflow-hidden border border-emerald-100">
+        <div class="bg-gradient-to-br from-emerald-700 to-teal-800">
+          <img src="image/fishs/ayor and bual.png" alt="Ayer and Boal Fish" class="w-full h-44 object-cover" onerror="this.style.display='none'" />
+        </div>
+        <div class="p-4">
+          <h3 class="font-bold text-base text-slate-900">Ayer &amp; Boal (আইড় ও বোয়াল)</h3>
+          <p class="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Prized deep-water lake fish famous for tender texture in spicy Bengali bhuna.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
